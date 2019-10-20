@@ -4,10 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-
-
-    "content-hash": "051b21429085c184712bd40c3264fd8a",
-
+    "content-hash": "5b22b32857c326b4ab7ed91a5784d683",
     "packages": [
         {
             "name": "aranyasen/laravel-adminer",
