@@ -10,14 +10,28 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+   <!---sin bootstrap--><script src="{{ asset('js/app.js') }}" defer></script> 
 
+   <script src="js/bootstrap.min.js"></script>
+
+   <script src="js/docs.min.js"></script>
+   <script src="js/app.js"></script>
+
+   <script src="js/app.js"></script>
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
+
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
+
+   <!--bootstrap-->
+   <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet">
+
+   <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+
 </head>
 <body>
     <div id="app">
@@ -45,7 +59,7 @@
                             </li>
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
                                 </li>
                             @endif
                         @else
