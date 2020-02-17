@@ -78,15 +78,15 @@
                                 <label for="intereses" class="col-md-4 col-form-label text-md-right">{{ __('Intereses:') }}</label>
 
 
-                                <div> <label><input type="checkbox" name="cb-informatica" value="gusta"> Informática </label><br>
+                                <div> <label><input id='intereses-infor' type="checkbox" name=" intereses[]" value="informatica"> Informática </label><br>
 
-                                <label><input type="checkbox" name="cb-deportes" value="gusta"> Deportes</label><br>
+                                <label><input  id='intereses-depor' type="checkbox" name="intereses[]" value="deportes"> Deportes</label><br>
 
-<label><input type="checkbox" name="cb-videojuegos" value="gusta"> Videojuegos</label><br>
+                              <label><input id='intereses-video' type="checkbox" name="intereses[]" value="videojuegos"> Videojuegos</label><br>
 
-<label> <input type="checkbox" name="cb-ocio" value="gusta"> Ocio </label>
-<label><input type="checkbox" name="cb-noticias" value="gusta"> Noticias </label>
-<label><input type="checkbox" name="cb-animales" value="gusta"> Animales </label>
+                              <label> <input  id='intereses-ocio' type="checkbox" name="intereses[]" value="ocio"> Ocio </label>
+                                <label><input  id='intereses-noticias' type="checkbox" name="intereses[]" value="noticias"> Noticias </label>
+                                <label><input  id='intereses-animales' type="checkbox" name="intereses[]" value="animales"> Animales </label>
 
 
 </div>
