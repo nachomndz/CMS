@@ -24,9 +24,10 @@ class CreateMicrocontentsTable extends Migration
             /* campo json que guardara id,tema,titulo foto,texto.*/ 
             $table->json('noticia');
             /*campo donde se guarda a quien va dirigida la noticia*/ 
-            $table->integer('user_id')->unsigned();
+            $table->unsignedBigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
+            
             /*campo para crear columna deleted_at*/
             $table->softDeletes();
 
