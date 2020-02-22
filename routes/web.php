@@ -18,7 +18,7 @@ Route::get('/', function () {
 
 
 Route::get('noticias', function(){
-    return view('news');
+    return view('shownews');
 });
 
 Route::get('newsEdit','EdicionController@index')->name('newsEdit');

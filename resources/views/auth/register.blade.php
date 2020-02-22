@@ -85,7 +85,7 @@
                               <label><input id='intereses-video' type="checkbox" name="intereses[]" value="videojuegos"> Videojuegos</label><br>
 
                               <label> <input  id='intereses-ocio' type="checkbox" name="intereses[]" value="ocio"> Ocio </label>
-                                <label><input  id='intereses-noticias' type="checkbox" name="intereses[]" value="noticias"> Noticias </label>
+                                <label><input  id='intereses-politica' type="checkbox" name="intereses[]" value="política"> Política</label>
                                 <label><input  id='intereses-animales' type="checkbox" name="intereses[]" value="animales"> Animales </label>
 
 
