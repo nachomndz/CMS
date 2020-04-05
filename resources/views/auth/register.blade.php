@@ -1,5 +1,12 @@
 @extends('layouts.app')
 
+<style>
+.container {
+  text-align: left;
+  padding-left: 30%;
+}
+</style>
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -72,6 +79,23 @@
                                 <input id="telefono" type="tel" class="form-control @error('name') is-invalid @enderror" name="telefono" value="{{ old('telefono') }}" required autocomplete="name" autofocus>
 
 </div> </div>
+
+
+
+<!---puesto--->
+<div class="form-group row">
+                            <label for="perfi_id" class="col-md-4 col-form-label text-md-right">{{ __('Puesto') }}</label>
+
+                       
+                           
+                            <div class="col-md-5">
+                            <div class="input-group">
+                            <input id="perfil_id" type="radio" name="perfil_id" class="form-control @error('name') is-invalid @enderror" value="1"> Directivo 
+
+                            <input id="perfil_id" type="radio" name="perfil_id" class="form-control @error('name') is-invalid @enderror" value="2"> Empleado
+</div>
+</div> </div>
+
 
 
                         <div class="form-group row">

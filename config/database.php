@@ -48,6 +48,8 @@ return [
             'url' => env('DATABASE_URL'),
             'host' => env('DB_HOST', '127.0.0.1'),
             'port' => env('DB_PORT', '3306'),
+
+            /*forge por tfgdb y por root*/
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
@@ -123,6 +125,8 @@ return [
 
         'options' => [
             'cluster' => env('REDIS_CLUSTER', 'predis'),
+
+            /*tfgdb donde ponia laravel*/
             'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
         ],
 

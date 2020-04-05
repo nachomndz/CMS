@@ -21,6 +21,11 @@ Route::get('noticias', function(){
     return view('shownews');
 });
 
+
+Route::get('miarea', function(){
+    return view('miarea');
+});
+
 Route::get('newsEdit','EdicionController@index')->name('newsEdit');
    
 /*Route::get('newsEdit', function(){

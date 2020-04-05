@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Illuminate\Support\Facades\DB;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -13,6 +13,7 @@ class UsersTableSeeder extends Seeder
     {
         $userRole = config('roles.models.role')::where('name', '=', 'User')->first();
         $adminRole = config('roles.models.role')::where('name', '=', 'Admin')->first();
+
         $permissions = config('roles.models.permission')::all();
 
         /*
@@ -24,7 +25,9 @@ class UsersTableSeeder extends Seeder
                 'name'     => 'Admin',
                 'email'    => 'admin@admin.com',
                 'password' => bcrypt('password'),
-                'telefono '=> '640065252',
+                'telefono'=> '640065252',
+                'perfil_id' => '1',
+                /*'telefono '=> '640065252',*/
             ]);
 
             $newUser->attachRole($adminRole);
@@ -38,11 +41,27 @@ class UsersTableSeeder extends Seeder
                 'name'     => 'User',
                 'email'    => 'user@user.com',
                 'password' => bcrypt('password'),
-                'telefono '=> '640065252',
+                'telefono'=> '640065252',
+                'perfil_id' => '1',
+             /*   'telefono '=> '640065252',*/
             ]);
 
             $newUser;
             $newUser->attachRole($userRole);
         }
+
+
+
+        
+        DB::table('users')->insert([
+            
+            'name' => 'IgnacioEditor',
+            'email' => 'editor@editor.com',
+            'password' => bcrypt('password'),
+           
+            'telefono' =>'640065252',
+            'perfil_id' => '1',
+          
+        ]);
     }
 }

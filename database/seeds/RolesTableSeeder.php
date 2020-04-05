@@ -28,12 +28,25 @@ class RolesTableSeeder extends Seeder
                 'description' => 'User Role',
                 'level'       => 1,
             ],
+
+
             [
                 'name'        => 'Unverified',
                 'slug'        => 'unverified',
                 'description' => 'Unverified Role',
                 'level'       => 0,
             ],
+
+            [
+                'name'        => 'Editor',
+                'slug'        => 'editor',
+                'description' => 'Editor Role',
+                'level'       => 4,
+            ],
+
+         
+
+
         ];
 
         /*

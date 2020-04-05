@@ -1,3 +1,7 @@
+@extends('layouts.app')
+
+
+
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
@@ -5,15 +9,14 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>-->
         
-  
 
   <!--probando-->
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"> -->
   
   
   
@@ -33,13 +36,13 @@
    <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet">
 -->
 
-   <link href="{{ asset('css/landing-page.css') }}" rel="stylesheet">
+   <!--<link href="{{ asset('css/landing-page.css') }}" rel="stylesheet">-->
 
    
 
       
         <!-- Styles -->
-       <style>
+     <!---  <style>
            html, body {
                 background-color: #fff;
                 color: #636b6f;
@@ -119,7 +122,7 @@ a:hover {
   text-decoration: none;
 }
 
-footer {
+/*footer {
   background:   #fff;
 }
 
@@ -133,7 +136,7 @@ footer {
     width:400px;
     height:200x;
     margin: auto;
-}
+}-->
 
 
         </style>
@@ -142,11 +145,12 @@ footer {
     
   <body>
 
+  @section('content')
 
 
 
 
-        <div class="flex-center position-ref full-height">
+     <!--   <div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
@@ -159,13 +163,12 @@ footer {
                         @endif
                     @endauth
                 </div>
-            @endif
-
-
+            @endif-->
+<!-- falta el </div> -->
   
     
 
-            <div class="container">
+           <div class="container">
   <div class="row">
     <div class="col-sm" >
       One of three columns
@@ -178,11 +181,11 @@ footer {
     </div>
   </div>
 </div>
-    
 
-             
-      
 
+
+
+@endsection
 
 
 

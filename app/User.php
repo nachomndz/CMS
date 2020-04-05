@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telefono','intereses'
+        'name', 'email', 'password', 'telefono','intereses','perfil_id', 
     ];
 
     /**
@@ -69,4 +69,28 @@ public function hasRole($role)
     }
     return false;
 }
+
+
+
+
+//Cada usuario pertenece a un perfil (belongsTo se usa para 1 a muchos). 
+//1 perfil puede tener muchos usuarios.
+
+public function perfil(){
+    return $this->belongsTo(Perfil::class);
+}
+//Cada usuario le corresponden muchos microcontenidos
+//belongsToMany se usa para muchos a muchos
+
+public function microcontenidos(){
+    return $this->belongsToMany(Microcontenido::class);
+}
+
+//muchos a muchos con tags
+public function tags(){
+    return $this->belongsToMany(Tag::class);
+}
+
+
+
 }

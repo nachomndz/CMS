@@ -12,6 +12,13 @@
     <!-- Scripts -->
    <!---sin bootstrap--><script src="{{ asset('js/app.js') }}" defer></script> 
 
+   <style>  
+
+.color_diferente{
+color: #802779;
+}
+
+</style>
    <script src="js/bootstrap.min.js"></script>
 
    <script src="js/docs.min.js"></script>
@@ -83,21 +90,73 @@
 
                                     <a class="dropdown-item" href="{{ url('/noticias') }}"
                                        onclick="">
-                                        {{ __('Mi área') }}
+                                        {{ __('Mis noticias') }}
                                     </a>
 
-                                     
+                                    <a class="dropdown-item" href="{{ url('/miarea') }}"
+                                       onclick="">
+                                        {{ __('Mi área ') }}
+                                    </a>
                                 </div>
                             </li>
                         @endguest
                     </ul>
                 </div>
             </div>
+
         </nav>
 
+
+
+        
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
+
+<!--
+</div>
+
+    <footer class="pt-4 my-md-5 pt-md-5 border-top">
+    <div class="row">
+      <div class="col-12 col-md">
+        <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
+        <small class="d-block mb-3 text-muted">© 2017-2019</small>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Features</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Cool stuff</a></li>
+          <li><a class="text-muted" href="#">Random feature</a></li>
+          <li><a class="text-muted" href="#">Team feature</a></li>
+          <li><a class="text-muted" href="#">Stuff for developers</a></li>
+          <li><a class="text-muted" href="#">Another one</a></li>
+          <li><a class="text-muted" href="#">Last time</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Resources</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="#">Resource</a></li>
+          <li><a class="text-muted" href="#">Resource name</a></li>
+          <li><a class="text-muted" href="#">Another resource</a></li>
+          <li><a class="text-muted" href="#">Final resource</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md">
+        <h5>Contact</h5>
+        <ul class="list-unstyled text-small">
+          <li><a class="text-muted" href="https://www.linkedin.com/in/ignaciomendz/">Linkedin</a></li>
+          <li><a class="text-muted" href="https://twitter.com/nachomndzz">Twitter</a></li>
+          <li><a class="text-muted" href="https://sectorf8.com">Ingeniería SectorF8</a></li>
+          <li><a class="text-muted" href="#">Terms</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+-->
+
+
 </body>
 </html>
