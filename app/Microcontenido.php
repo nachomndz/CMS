@@ -18,7 +18,7 @@ class Microcontenido extends Model
     //Un Microcontenido pertenece a muchos usuarios,tags, perfiles.
     
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'user_content');
     }
 
     public function tags(){

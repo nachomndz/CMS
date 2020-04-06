@@ -12,13 +12,14 @@ class User extends Authenticatable
     use Notifiable;
     use HasRoleAndPermission;
 
+ 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'telefono','intereses','perfil_id', 
+        'name', 'email', 'password', 'telefono','perfil_id', 
     ];
 
     /**
@@ -83,12 +84,24 @@ public function perfil(){
 //belongsToMany se usa para muchos a muchos
 
 public function microcontenidos(){
-    return $this->belongsToMany(Microcontenido::class);
+    return $this->belongsToMany(Microcontenido::class,'user_content','user_id','contenido_id');//->as('microcontenido_user');
 }
 
 //muchos a muchos con tags
 public function tags(){
     return $this->belongsToMany(Tag::class);
+}
+
+
+public static function getMisContenidos($id){
+       
+    $user = User::findOrFail($id);
+
+    foreach($user->microcontenidos as $microcontent){
+        return $microcontent;
+    }
+
+//return $microcontent;
 }
 
 

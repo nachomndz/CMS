@@ -16,7 +16,7 @@ class AddInteresesToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
 
-            $table->json('intereses')->after('telefono')->nullable();
+           // $table->json('intereses')->after('telefono')->nullable();
 
 
         });
@@ -32,7 +32,7 @@ class AddInteresesToUsers extends Migration
         Schema::table('users', function (Blueprint $table) {
             //
 
-            $table->dropColumn('intereses');
+         //   $table->dropColumn('intereses');
            
 
         });
