@@ -42,6 +42,18 @@ class MicrocontenidoController extends Controller
         //
 
 
+        $microcontenidos = new Microcontenido();   
+
+        $microcontenidos->tipo = $request->tipo;
+        $microcontenidos->noticia = $request->noticia;
+        $microcontenidos->comienza = $request->comienza;
+        $microcontenidos->caduca = $request->caduca;
+   
+
+        $microcontenidos->save();
+
+        return response()->json( $microcontenidos, 201);
+
     }
 
     /**
