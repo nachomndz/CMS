@@ -20,6 +20,12 @@ use Illuminate\Http\Request;
 */
 
 
+
+Route::get('users/IdDadoEmail/{id}', 'User\UserController@obtenerIdDadoEmail');
+
 Route::resource('users', 'User\UserController');
 
+
+
 Route::resource('microcontenidos', 'Microcontenido\MicrocontenidoController');
+

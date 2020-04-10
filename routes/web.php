@@ -41,3 +41,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 //Route::any('adminer', '\Aranyasen\LaravelAdminer\AdminerAutologinController@index');
 
 Route::any('mibbddpma', '\Aranyasen\LaravelAdminer\AdminerAutologinController@index')->name('mibbddpma')->middleware('role:admin', 'level:5'); // admin and level >= 9
+
+
+//Que quiere decir que cuando se realice 
+//una petición post a microcontenido se ejecutará el método store del controlador MensajesController.
+Route::post('microcontenido', 'Microcontenido\MicrocontenidoController@store')->name('store');

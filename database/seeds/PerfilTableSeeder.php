@@ -26,5 +26,11 @@ class PerfilTableSeeder extends Seeder
             'puesto' => 'empleado',
           
         ]);
+
+        DB::table('perfiles')->insert([
+            'id' => 3,
+            'puesto' => 'becario',
+          
+        ]);
     }
 }

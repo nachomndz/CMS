@@ -82,7 +82,7 @@ public function perfil(){
 }
 //Cada usuario le corresponden muchos microcontenidos
 //belongsToMany se usa para muchos a muchos
-
+//modificado...
 public function microcontenidos(){
     return $this->belongsToMany(Microcontenido::class,'user_content','user_id','contenido_id');//->as('microcontenido_user');
 }
@@ -97,11 +97,19 @@ public static function getMisContenidos($id){
        
     $user = User::findOrFail($id);
 
-    foreach($user->microcontenidos as $microcontent){
-        return $microcontent;
-    }
 
-//return $microcontent;
+
+    $collection = collect();
+    foreach($user->microcontenidos as $microcontent){
+
+      $collection->push($microcontent);
+
+
+    } 
+
+
+    return $collection;
+
 }
 
 

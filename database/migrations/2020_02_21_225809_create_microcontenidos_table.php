@@ -22,17 +22,23 @@ class CreateMicrocontenidosTable extends Migration
              * o en caso de hacer una app de casas rurales el destino o provincia Etc */
             $table ->string('tipo');
             /* campo json que guardara id,tema,titulo foto,texto.*/ 
-            $table->json('noticia');
+            $table->string('titulo');
+            $table->string('subtitulo');
+            $table->string('texto');
+
+            $table->string('autor');
             /*campo donde se guarda a quien va dirigida la noticia*/ 
             /*$table->unsignedBigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 */
+
+            $table->datetime('comienza');
+            $table->datetime('caduca');
             
             /*campo para crear columna deleted_at*/
             $table->softDeletes();
 
-            $table->datetime('comienza');
-            $table->datetime('caduca');
+           
 
             $table->timestamps();
         });

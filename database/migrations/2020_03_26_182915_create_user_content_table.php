@@ -23,6 +23,10 @@ class CreateUserContentTable extends Migration
             $table->unsignedBigInteger('contenido_id')->unsigned()->index();
             $table->foreign('contenido_id')->references('id')->on('microcontenidos')->onDelete('cascade');
 
+            $table->enum('opciones', ['dirigido', 'perfil','tag']);	
+
+
+            $table->boolean('visible');
 
             $table->timestamps();
         });

@@ -39,14 +39,16 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
 
-     /*   $rules = [
-            'name' => 'required',
-            'email' => 'required',
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email:rfc,dns',
             'password' => 'required',
-            'telefono' => 'required',
-            'perfil_id' => 'required',        ];*/
+            'telefono' => 'required|integer',
+            'perfil_id' => 'required|integer'
+        ]);
+
 
            $user = new User;   
 
@@ -62,6 +64,14 @@ class UserController extends Controller
 
 
 
+            //
+
+     /*   $rules = [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'telefono' => 'required',
+            'perfil_id' => 'required',        ];*/
 /*
             $this->validate($request,$rules);
 
@@ -136,6 +146,50 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+    public static function obtenerTodos()
+    {
+        //
+        $users= User::get();
+        return $users;
+    }
+
+
+
+
+    
+    public function obtenerIdDadoEmail(Request $request)
+    {
+        //
+
+
+        //$user= User::find($id);
+        //$user=User::all()->whereStrict('email', $email)->id;
+       
+
+        //echo $email;
+        return User::findOrFail($request->id);
+      /* $user=User::all()->whereStrict('email', $email);
+        
+
+        return $user;*/
+    }
+
+
+//probando en tinker
+    public static function obtenerTodosEmails($email)
+    {
+        //
+       /* $users= User::get()->email;
+        return $users;*/
+        $user=User::get()->where('email', $email);
+       
+        
+
+        return $user;
     }
 
    
