@@ -17,15 +17,20 @@ Route::get('/', function () {
 
 
 
-Route::get('noticias', function(){
+/*Route::get('noticias', function(){
     return view('shownews');
 });
+*/
+
+//acceso restringido solo a usuarios logueados
+Route::get('noticias','showNewsController@index')->middleware('auth'); //,->name('noticias');
+
 
 
 Route::get('miarea', function(){
     return view('miarea');
 });
-
+//acceso restringido a menos que tengas rol de editor
 Route::get('newsEdit','EdicionController@index')->name('newsEdit');
    
 /*Route::get('newsEdit', function(){

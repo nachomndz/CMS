@@ -143,8 +143,43 @@
                                 </div>
 
     </div>
-                                <div>
-                                    <div class="form-group row">
+                              
+                                   
+        
+                                    
+
+        <?php   
+    $usuarios=App\User::all();
+
+  //  echo "<select id='SelectUser1' name='SelectUs1' >";
+   // foreach($usuarios as $email){
+
+      //  echo "<option value='".$email['id']."'>".$email['email']."</option>";
+    //}
+   // echo "</select>";
+    ?>
+
+             <input type="button"  value="añadir" onclick="testBut()"> 
+
+                <input type="button" value="borrar" onclick="borrar_ids()">
+
+
+
+<div class="form-group row">
+        <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Usuario/s o all::</label>
+    
+        <div class="col-md-6">
+        <select class="form-control " id="SelectUser" name="SelectUs">
+            @foreach ($usuarios as $email)
+            <option value="{{$email['id']}}">{{$email['email']}}</option>
+            @endforeach
+        </select>
+    </div>
+
+</div>
+
+
+<div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Id del usuario/all:') }}</label>
                                 <div class="col-md-6">
                                             <input id="user" type="text"  name="user"   autofocus>
@@ -154,32 +189,13 @@
 
         </div>
 
- 
-
-        <?php   
-    $usuarios=App\User::all();
-
-    echo "<select id='SelectUser' name='SelectUs' >";
-    foreach($usuarios as $email){
-
-        echo "<option value='".$email['id']."'>".$email['email']."</option>";
-    }
-    echo "</select>";
-    ?>
-
-
-
-             <input type="button"  value="añadir" onclick="testBut()"> 
-
-                <input type="button" value="borrar" onclick="borrar_ids()">
-
-
-
      
-                                    <div class="form-group row">
-                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Autor:') }}</label>
-                                    <div class="form-group row">
-                                            <input id="autor" type="text"  name="autor"  autofocus>
+                                    
+                
+                <div class="form-group row">
+                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Autor:') }}</label>
+                     <div class="form-group row">
+                         <input id="autor" type="text"  name="autor"  autofocus>
 
         </div>      </div>
     

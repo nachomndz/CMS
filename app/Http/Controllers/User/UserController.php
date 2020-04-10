@@ -109,8 +109,10 @@ class UserController extends Controller
     {
         
 
-       return User::getMisContenidos($id);
+      // return User::getMisContenidos($id);
 
+
+      return User::findOrFail($id);
        //return User::where('id', $id)->get();
     }
 
@@ -192,5 +194,22 @@ class UserController extends Controller
         return $user;
     }
 
-   
+
+    public static function informacionPorId($id)
+    {
+        
+
+      // return User::getMisContenidos($id);
+
+
+      return User::findOrFail($id);
+       //return User::where('id', $id)->get();
+    }
+
+
+    public static function misContenidos($id){
+        return User::getMisContenidos($id);
+    }
+
+
 }
