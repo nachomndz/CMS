@@ -1,4 +1,6 @@
+
 @extends('layouts.app')
+
 
 
 
@@ -6,6 +8,41 @@
 
 
 
+<!-- -->
+ <!-- ends -->
+  <!-- jQuery -->
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>  -->
+  <!-- Bootstrap JavaScript -->
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/js/bootstrap.min.js"></script> -->
+ <!-- <script src="../js/jquery.multi-select.js"></script>
+  <script type="text/javascript">
+  // run pre selected options
+  $('#pre-selected-options').multiSelect();   -->
+ <!--</script>   -->
+    <!-- Include Twitter Bootstrap and jQuery: -->
+
+    
+   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>  -->
+  <!--  <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css"/>
+ 
+  <script type="text/javascript" src="js/bootstrap.min.js"></script> 
+
+  <link rel="stylesheet" href="css/bootstrap-multiselect.css" type="text/css"/>
+
+  <script type="text/javascript" src="js/bootstrap-multiselect.js"></script>
+   
+
+
+  <link href="path/to/multiselect.css" media="screen" rel="stylesheet" type="text/css">
+-->
+
+
+<script>
+$(document).ready(function() {
+  $('#months').multiselect();
+});  </script>
+
+<!--
 <script>
         let nacho=[], emails_ids;
         function borrar_ids(){
@@ -46,7 +83,7 @@
 
 
 
-
+-->
 
 
 
@@ -123,10 +160,12 @@ use Illuminate\Support\Facades\Auth;
 
                         <label for="tlf" class="col-md-4 col-form-label text-md-right"  ><?php echo $resultado['created_at']; ?> </label>
 
-
-
-
                             </div>
+
+
+
+                         
+
                        
                     </form>
                 </div>

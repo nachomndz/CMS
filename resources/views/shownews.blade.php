@@ -83,18 +83,34 @@
     </div>
     </div>
 
-    @endforeach
+    @endforeach  
     
   
   </div>
+</div> 
+
+<!---<div class="container">
+  <div class="row">
+
+@foreach ($dato as $d)
+
+
+<div class="card-deck">
+  <div class="card">
+    <img src="..." class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{$d->titulo}}</h5>
+      <p class="card-text">{{$d->texto}}</p>
+    </div>
+
+
+    </div>
 </div>
 
+    @endforeach  
 
-
-
-
-
-
+    </div>
+</div> -->
 
             
   

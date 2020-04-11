@@ -52,9 +52,9 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
-            'telefono' => ['required'],
+            'telefono' => ['required','string', 'max:12'],
             
-            'intereses' => ['required'],
+            //'intereses' => ['required'],
             'perfil_id' => ['required'],
         ]);
     }
@@ -74,7 +74,7 @@ class RegisterController extends Controller
             /* nuevo campo telefono e intereses */
             
             'telefono'=> $data['telefono'],
-            'intereses' => $data['intereses'],
+            //'intereses' => $data['intereses'],
             'perfil_id' => $data['perfil_id'],
          
         ]);

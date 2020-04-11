@@ -63,5 +63,48 @@ class UsersTableSeeder extends Seeder
             'perfil_id' => '1',
           
         ]);
+
+
+
+
+
+         //factoria usuarios con sus respectivos roles
+           $MAX_USERS=40;
+
+           $cantidad_roles=4;
+
+        
+
+        /*   
+           * Establecemos el máximo de usuarios -> 40
+           * y los IDs de los roles tabla .
+           * La aleatoriedad de la elección vendrá dada gracias al empleo de
+           *      array_rand() que escogerá entre los roles que van del 2 al 4 ,quitamos el 1
+           * que es el de administrador...
+           *           del rango obtenido, escoger 1 resultado que serán aleatorios.
+           * Es decir, que todos los usuarios tendrán un rol excepto el Administrador , que abajo 
+           * le asignamos un rol más el de Editor.
+           */
+
+
+       $usuario= factory(App\User::class, $MAX_USERS)->create()
+        ->each(function($usuario) use ($cantidad_roles) {
+            $usuario->roles()->attach(array_rand(array_flip(range(2, $cantidad_roles)), 1));
+
+
+        });
+
+
+
+
+        //El administrador va a ser a la vez editor (rol=4)
+        App\User::find(1)->roles()->attach(4);
+
     }
+
+
+
+
+
+   
 }

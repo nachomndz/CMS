@@ -45,7 +45,7 @@ class UserController extends Controller
             'name' => 'required|max:255',
             'email' => 'required|email:rfc,dns',
             'password' => 'required',
-            'telefono' => 'required|integer',
+            'telefono' => 'required|max:12',
             'perfil_id' => 'required|integer'
         ]);
 
