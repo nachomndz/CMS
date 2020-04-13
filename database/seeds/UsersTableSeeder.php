@@ -65,15 +65,17 @@ class UsersTableSeeder extends Seeder
         ]);
 
 
+        //El administrador va a ser a la vez editor (rol=4)
+        App\User::find(1)->roles()->attach(4);
 
 
 
          //factoria usuarios con sus respectivos roles
-           $MAX_USERS=40;
+     /*      $MAX_USERS=40;
 
            $cantidad_roles=4;
 
-        
+        */
 
         /*   
            * Establecemos el máximo de usuarios -> 40
@@ -84,7 +86,7 @@ class UsersTableSeeder extends Seeder
            *           del rango obtenido, escoger 1 resultado que serán aleatorios.
            * Es decir, que todos los usuarios tendrán un rol excepto el Administrador , que abajo 
            * le asignamos un rol más el de Editor.
-           */
+           
 
 
        $usuario= factory(App\User::class, $MAX_USERS)->create()
@@ -94,11 +96,9 @@ class UsersTableSeeder extends Seeder
 
         });
 
+*/
 
 
-
-        //El administrador va a ser a la vez editor (rol=4)
-        App\User::find(1)->roles()->attach(4);
 
     }
 
