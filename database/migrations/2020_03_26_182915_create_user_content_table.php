@@ -26,7 +26,7 @@ class CreateUserContentTable extends Migration
             $table->enum('opciones', ['dirigido', 'perfil','tag']);	
 
 
-            $table->boolean('visible');
+            $table->boolean('visible')->default(true);
 
             $table->timestamps();
         });

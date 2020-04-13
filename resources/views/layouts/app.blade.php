@@ -1,51 +1,20 @@
-
-    <?php use Illuminate\Support\Facades\Auth;
+<?php use Illuminate\Support\Facades\Auth;
                                     use App\User; ?>
-    <!doctype html>
-    <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+   
 
-        <!-- Scripts -->
-    <!---sin bootstrap--><script src="{{ asset('js/app.js') }}" defer></script> 
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 
-    <style>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
-    .color_diferente{
-    color: #802779;
-    }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 
-    </style>
-
-
-
-    <script src="js/bootstrap.min.js"></script>
-
-    <script src="js/docs.min.js"></script>
-    <script src="js/app.js"></script>
-
-    <script src="js/app.js"></script>  
-        <!-- Fonts -->
-       <link rel="dns-prefetch" href="//fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-
-        <!-- Styles -->
-   <link href="{{ asset('css/app.css') }}" rel="stylesheet"> 
-
-    <!--bootstrap-->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/bootstrap-theme.min.css') }}" rel="stylesheet">
-
-    <link href="{{ asset('css/theme.css') }}" rel="stylesheet">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     </head>
+
     <body>
         <div id="app">
             <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -67,143 +36,74 @@
                         <ul class="navbar-nav ml-auto">
                             <!-- Authentication Links -->
                             @guest
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                                @if (Route::has('register'))
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
-                                    </li>
-                                @endif
-                            @else 
-                                <li class="nav-item dropdown">
-                                    <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                            </li>
+                            @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Registro') }}</a>
+                            </li>
+                            @endif @else
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                         {{ Auth::user()->name }} <span class="caret"></span>
                                     </a>
 
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
+                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
                                             {{ __('Logout') }}
                                         </a>
 
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            @csrf
-                                        </form>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
 
-                                        
-
-
-
-                                
-                            
                                     <?php  
-                                    
-                                
+
                                     if(  Auth::user()->id !=null){
                                     $id =  Auth::user()->id; 
-                                    
-                                    
+
                                     $userb = User::with('roles')->where('id', $id)->first();
 
-                            
-
-                                    
                                     // $role= $userb->roles[0]->name;
                                     $array_roles=$userb->roles->pluck('name');
 
-                                    
-                                
-                                
-
                        if( $array_roles->contains('Admin') || $array_roles->contains('Editor')) {
-                                                                    
+
                                                                 ?>
 
-                                <a class="dropdown-item" href="{{ url('/newsEdit') }}"
-                                                                    onclick="">
+                                        <a class="dropdown-item" href="{{ url('/newsEdit') }}" onclick="">
                                                                         {{ __('Crea noticia') }}
                                                                     </a>
-                                                            <?php
+                                        <?php
                                                             }}  ?>
 
-                                    
-
-                                      
-                                    
-
-                                    <a class="dropdown-item" href="{{ url('/noticias') }}"
-                                       onclick="">
+                                            <a class="dropdown-item" href="{{ url('/noticias') }}" onclick="">
                                         {{ __('Mis noticias') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ url('/miarea') }}"
-                                       onclick="">
+                                            <a class="dropdown-item" href="{{ url('/miarea') }}" onclick="">
                                         {{ __('Mi área ') }}
                                     </a>
 
-
                                 </div>
                             </li>
-                        @endguest
-                    </ul>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
-            </div>
 
-        </nav>
+            </nav>
 
+            <main class="py-4">
+                @yield('content')
+            </main>
+        </div>
 
+        <script type="text/javascript" src="{{ asset('js/bootstrap-multiselect.js') }}"></script>
+        <link rel="stylesheet" href="{{ asset('css/bootstrap-multiselect.css')}}" type="text/css" />
 
-        
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
+    </body>
 
-
-<!--
-</div>
-
-    <footer class="pt-4 my-md-5 pt-md-5 border-top">
-    <div class="row">
-      <div class="col-12 col-md">
-        <img class="mb-2" src="/docs/4.4/assets/brand/bootstrap-solid.svg" alt="" width="24" height="24">
-        <small class="d-block mb-3 text-muted">© 2017-2019</small>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Features</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Cool stuff</a></li>
-          <li><a class="text-muted" href="#">Random feature</a></li>
-          <li><a class="text-muted" href="#">Team feature</a></li>
-          <li><a class="text-muted" href="#">Stuff for developers</a></li>
-          <li><a class="text-muted" href="#">Another one</a></li>
-          <li><a class="text-muted" href="#">Last time</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Resources</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="#">Resource</a></li>
-          <li><a class="text-muted" href="#">Resource name</a></li>
-          <li><a class="text-muted" href="#">Another resource</a></li>
-          <li><a class="text-muted" href="#">Final resource</a></li>
-        </ul>
-      </div>
-      <div class="col-6 col-md">
-        <h5>Contact</h5>
-        <ul class="list-unstyled text-small">
-          <li><a class="text-muted" href="https://www.linkedin.com/in/ignaciomendz/">Linkedin</a></li>
-          <li><a class="text-muted" href="https://twitter.com/nachomndzz">Twitter</a></li>
-          <li><a class="text-muted" href="https://sectorf8.com">Ingeniería SectorF8</a></li>
-          <li><a class="text-muted" href="#">Terms</a></li>
-        </ul>
-      </div>
-    </div>
-  </footer>
--->
-
-
-</body>
-</html>
+    </html>

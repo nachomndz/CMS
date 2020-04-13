@@ -48,5 +48,11 @@ class MicrocontenidosTableSeeder extends Seeder
         ]);
 
 
+
+
+        App\Microcontenido::find(1)->users()->attach(1);   
+        App\Microcontenido::find(2)->users()->attach(1);
+
+
     }
 }

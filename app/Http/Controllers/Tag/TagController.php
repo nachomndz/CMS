@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Tag;
 
 use App\Http\Controllers\Controller;
+use App\Tag;
 use Illuminate\Http\Request;
 
 class TagController extends Controller
@@ -15,6 +16,11 @@ class TagController extends Controller
     public function index()
     {
         //
+
+
+        $tags= Tag::all();
+        return $tags;
+
     }
 
     /**
@@ -82,4 +88,18 @@ class TagController extends Controller
     {
         //
     }
+
+
+
+    public static function staticIndex(){
+        $tags= Tag::all();
+        return $tags;
 }
+
+
+
+
+}
+
+
+
