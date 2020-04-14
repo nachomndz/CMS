@@ -18,7 +18,6 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
 
-        $this->call('PerfilTableSeeder');
         $this->call('PermissionsTableSeeder');
         $this->call('RolesTableSeeder');
         $this->call('ConnectRelationshipsSeeder');
@@ -27,6 +26,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call('TagsTableSeeder');
         $this->call('MicrocontenidosTableSeeder');
+
+        $this->call('PerfilTableSeeder');
         //$this->call('UsersTableSeeder');
 
     Model::reguard();

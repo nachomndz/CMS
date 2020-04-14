@@ -78,7 +78,7 @@ public function hasRole($role)
 //1 perfil puede tener muchos usuarios.
 
 public function perfil(){
-    return $this->belongsTo(Perfil::class);
+    return $this->belongsTo(Perfil::class,'perfil_id');
 }
 //Cada usuario le corresponden muchos microcontenidos
 //belongsToMany se usa para muchos a muchos
