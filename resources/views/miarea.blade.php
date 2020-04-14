@@ -93,16 +93,11 @@ use Illuminate\Support\Facades\Auth;
 
 
 
-                            <div class="container" class=".col-12">
-                            <div class="row">
- <select id="example-getting-started"  name="multiselect[]" multiple="multiple" required="">
-            @foreach ($Tags as $tag)
-            <option value="{{$tag->name}}">{{$tag->name}}</option>
+                 <select id="example-getting-started"  name="multiselect[]" multiple="multiple" required="">
+                        @foreach ($Tags as $tag)
+                         <option value="{{$tag->name}}">{{$tag->name}}</option>
             @endforeach
-        </select>
-</div>
-
-</div>
+                    </select>
 
                             <script type="text/javascript">
            

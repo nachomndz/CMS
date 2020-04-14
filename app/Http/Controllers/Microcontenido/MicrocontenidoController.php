@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Microcontenido;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\User\UserController;
 use App\Microcontenido;
 use Illuminate\Http\Request;
 
@@ -40,7 +41,7 @@ class MicrocontenidoController extends Controller
     public function store(Request $request)
     {
         // 
-        
+        //return $request;
         
       
         //$request->json_encode('noticia');
@@ -74,19 +75,77 @@ class MicrocontenidoController extends Controller
 
 //saco el numero de elementos
 //convierto string separado por comas a array
-$array = explode(",", $request->user);
+//$array = explode(",", $request->user);
 //saco su longitud
-$longitud = count($array);
+
+//usar para quitar repetidos array_unique(array)
+
+
+
+
+
+
+
+
+$lista_de_ids=[];
+
+$array=$request->multiselect;
+
+if(!is_numeric($array[0])   ){
+
+
+   array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[0]));
+    
+
+}
+
+
+if(!is_numeric($array[1])   ){
+
+    array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[1]));
+
+}
+
+if(!is_numeric($array[2])   ){
+
+    array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[2]));
+}
+
+
+//$repetidos=array_merge($array,$lista_de_ids);
+
+$lista_de_ids=array_unique($lista_de_ids);
+
+
+
+
+    # code...
+//return $lista_de_ids;
+//$uniendo_arrays = array_merge($lista_de_ids[$i]);
+//}
+//$longitud = count($lista_de_ids);
+
+
 //Recorro todos los elementos
-for($i=0; $i<$longitud; $i++)
+
+for ($i=0; $i <count($lista_de_ids) ; $i++) { 
+    
+    for($j=0; $j<count($lista_de_ids[$i]); $j++)
       {
       //saco el valor de cada elemento
-	  $microcontenidos->users()->attach($array[$i] , ['opciones' => 'dirigido' , 'visible' => 1]);
-      }
+      //echo $lista_de_ids[$i][$j].'<br>';
+
+$microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigido', 'visible' => 1]);
+     
+    }
+    
+    
+    }
+    return;
 //FUNCIONAL
 //$microcontenidos->users()->attach($request->user , ['opciones' => 'dirigido' , 'visible' => 1]); //['visible' => 1]);
       // User::find($request->user)->Microcontenido()->save($microcontenido, '')
-        return response()->json( $microcontenidos, 201);
+        return response()->json($microcontenidos, 201);
 
     }
 
@@ -183,6 +242,12 @@ for($i=0; $i<$longitud; $i++)
         return response()->json( $microcontenidos, 201);
 
     }
+
+
+
+
+
+
 
 
 }

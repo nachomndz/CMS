@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Perfil;
 
 use App\Http\Controllers\Controller;
+use App\Perfil;
 use Illuminate\Http\Request;
 
 class PerfilController extends Controller
@@ -81,5 +82,15 @@ class PerfilController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+
+
+    public static function staticIndex(){
+
+        $dato=Perfil::all();
+
+        return $dato;
     }
 }

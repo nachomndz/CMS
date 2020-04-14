@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Perfil;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash as FacadesHash;
@@ -210,6 +211,22 @@ class UserController extends Controller
     public static function misContenidos($id){
         return User::getMisContenidos($id);
     }
+
+
+
+
+
+    public static function obtenerIdsPorPerfil($puesto){
+        
+        //id del puesto dado 
+        $id_perfil=Perfil::where('puesto', $puesto)->first()->id;       
+      $user = User::where('perfil_id', $id_perfil)->get()->pluck('id');
+
+      //retorna usuarios que tienen el puesto pasado por parámetro
+        return $user;
+    }
+
+
 
 
 }

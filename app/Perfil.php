@@ -9,7 +9,8 @@ class Perfil extends Model
     //
 
 
-
+    public $table = "perfiles";
+   
     protected $fillable = [
         'puesto',
     ];
