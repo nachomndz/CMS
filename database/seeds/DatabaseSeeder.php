@@ -18,13 +18,17 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
 
 
+      
+
         $this->call('PermissionsTableSeeder');
+        $this->call('TagsTableSeeder');
         $this->call('RolesTableSeeder');
         $this->call('ConnectRelationshipsSeeder');
         $this->call('PerfilTableSeeder');
+        
         $this->call('UsersTableSeeder');
 
-        $this->call('TagsTableSeeder');
+        
         $this->call('MicrocontenidosTableSeeder');
 
 

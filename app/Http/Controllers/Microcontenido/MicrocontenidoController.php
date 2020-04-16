@@ -298,26 +298,36 @@ $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigid
         $microcontenidos->save();
 
 
+       $microcontenidos = Microcontenido::find($microcontenidos->id);
 
         $lista_de_tags=[];
 
         $lista_de_tags=$request->multiselect;
 
+
+        
         for ($j=0; $j<count($lista_de_tags) ; $j++) { 
            
-           return $microcontenidos->tags();
-            $microcontenidos->tags()->attach('id',$lista_de_tags[$j]);
-        }
+          
+            $microcontenidos->tags()->attach($lista_de_tags[$j]);
 
+
+          
+        }
+     
+
+        //hasta aquí funciona
+      //  return $lista_de_tags;
 
        $lista_de_ids_users=[];
         for ($h=0; $h<count($lista_de_tags) ; $h++) { 
-           array_push( $lista_de_ids_users ,UserController::obtenerIdsPorTag($lista_de_tags[$h]));
+           array_push($lista_de_ids_users ,UserController::obtenerIdsPorTag($lista_de_tags[$h]));
 
 
         }
 
 
+        //return $lista_de_ids_users;
 
 
         for ($i=0; $i <count($lista_de_ids_users) ; $i++) { 

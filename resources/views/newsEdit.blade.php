@@ -221,7 +221,12 @@ $(document).ready(function() {
             
                 $('#SelectUser').multiselect({
                     includeSelectAllOption: true,
-                    enableFiltering: true
+                    enableFiltering: true,
+                    maxHeight: 250,
+                    buttonWidth: '200px',
+                    allSelectedText: 'Todas seleccionadas...',
+
+
                 });
             });
         </script>

@@ -89,7 +89,7 @@ public function microcontenidos(){
 
 //muchos a muchos con tags
 public function tags(){
-    return $this->belongsToMany(Tag::class,'user_tag','user_id','tag_id');
+    return $this->belongsToMany(Tag::class,'tag_user','user_id','tag_id');
 }
 
 

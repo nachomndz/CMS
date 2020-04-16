@@ -16,8 +16,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
         $('#example-getting-started').multiselect({
+            
             includeSelectAllOption: true,
-            enableFiltering: true
+                    enableFiltering: true,
+                    maxHeight: 250,
+                    buttonWidth: '200px',
+                    allSelectedText: 'Todas seleccionadas...',
         });
     });
 </script>

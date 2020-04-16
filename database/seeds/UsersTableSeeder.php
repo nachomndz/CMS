@@ -108,6 +108,11 @@ DB::table('users')->insert([
 
 
 
+   
+
+        }
+
+     
 
 
     }
@@ -117,4 +122,4 @@ DB::table('users')->insert([
 
 
    
-}
+

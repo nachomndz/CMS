@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateUserTagTable extends Migration
+class CreateTagUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class CreateUserTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('user_tag', function (Blueprint $table) {
+        Schema::create('tag_user', function (Blueprint $table) {
             $table->bigIncrements('id');
 
 
-            /*clave ajena de usuario*/
+    
             $table->unsignedBigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
-            /*clave ajena de perfil*/
+
             $table->unsignedBigInteger('tag_id')->unsigned()->index();
             $table->foreign('tag_id')->references('id')->on('tags')->onDelete('cascade');
 
@@ -40,6 +40,9 @@ class CreateUserTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_tag');
+        Schema::dropIfExists('tag_user');
+
+
+        //$table->dropForeign('employees_parent_id_foreign');
     }
 }

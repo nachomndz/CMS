@@ -17,7 +17,7 @@ class Tag extends Model
 
  
     public function microcontenidos(){
-        return $this->belongsToMany(Microcontenido::class);//,'contenido_id','tag_id');
+        return $this->belongsToMany(Microcontenido::class,'content_tags','tag_id','content_id');//,'contenido_id','tag_id');
     }
 
 
@@ -25,7 +25,7 @@ class Tag extends Model
 
 
     public function users(){
-        return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class,'tag_user','user_id','tag_id');
     }
     
 

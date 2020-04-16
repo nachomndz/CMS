@@ -16,21 +16,64 @@ class PerfilTableSeeder extends Seeder
 
         DB::table('perfiles')->insert([
             'id' => 1,
-            'puesto' => 'directivo',
+            'puesto' => 'Directivo',
           
         ]);
 
 
+
+
+        
         DB::table('perfiles')->insert([
             'id' => 2,
-            'puesto' => 'empleado',
+            'puesto' => 'Departamento de Finanzas',
           
         ]);
+
+       
 
         DB::table('perfiles')->insert([
             'id' => 3,
-            'puesto' => 'becario',
+            'puesto' => 'Departamento de Recursos Humanos',
           
         ]);
+
+        DB::table('perfiles')->insert([
+            'id' => 4,
+            'puesto' => 'Departamento Comercial',
+          
+        ]);
+
+
+        DB::table('perfiles')->insert([
+            'id' => 5,
+            'puesto' => 'Departamento de Marketing',
+          
+        ]);
+
+
+
+        DB::table('perfiles')->insert([
+            'id' => 6,
+            'puesto' => 'Departamento Tecnológico',
+          
+        ]);
+
+
+        DB::table('perfiles')->insert([
+            'id' => 7,
+            'puesto' => 'Servicios de Limpieza',
+          
+        ]);
+
+
+        DB::table('perfiles')->insert([
+            'id' => 8,
+            'puesto' => 'Becario',
+          
+        ]);
+
+     
+
     }
 }

@@ -250,8 +250,11 @@ $data=PerfilController::staticIndex();
            
            $(document).ready(function() {
                $('#example-getting-started').multiselect({
-                   includeSelectAllOption: true,
-                   enableFiltering: true
+                includeSelectAllOption: true,
+                    enableFiltering: true,
+                    maxHeight: 250,
+                    buttonWidth: '200px',
+                    allSelectedText: 'Todas seleccionadas...',
                });
            });
        </script>

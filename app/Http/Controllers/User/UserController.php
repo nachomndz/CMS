@@ -244,6 +244,9 @@ class UserController extends Controller
             $query->where('tag_id',$id_tag);
         })->get(),0);
 
+
+
+        return $user;
         return $user->id;
     }
 

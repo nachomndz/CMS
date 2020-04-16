@@ -166,7 +166,8 @@ $(document).ready(function() {
             
                 $('#example-getting-started').multiselect({
                     includeSelectAllOption: true,
-                    enableFiltering: true
+                    enableFiltering: true,
+                    maxHeight: 250,
                 });
             });
         </script>
