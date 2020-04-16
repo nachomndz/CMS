@@ -82,7 +82,7 @@
                     <div class="card-header">{{ __('Crea la noticia') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('store') }}">
+                        <form method="POST" action="{{ route('almacenaPorTag') }}">
                             @csrf
 
                             <div>
@@ -141,41 +141,10 @@ $usuarios=App\User::all();
 
 
 $Tags = TagController::staticIndex();
-  //  echo "<select id='SelectUser1' name='SelectUs1' >";
-   // foreach($usuarios as $email){
 
-      //  echo "<option value='".$email['id']."'>".$email['email']."</option>";
-    //}
-   // echo "</select>";
     ?>
 
-                               <!--     <input type="button" value="añadir" onclick="testBut()">
-
-                                    <input type="button" value="borrar" onclick="borrar_ids()">
-
-                                    <div class="form-group row">
-                                        <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Usuario/s o all::</label>
-
-                                        <div class="col-md-6">
-                                            <select class="form-control " id="SelectUser1" name="SelectUs">
-                                                @foreach ($usuarios as $email)
-                                                <option value="{{$email['id']}}">{{$email['email']}}</option>
-                                                @endforeach
-                                            </select>
-                                        </div>
-
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Id del usuario/all:') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="user" type="text" name="user" autofocus>
-
-                                        </div>
-
-                                    </div> 
---->
-
+                
 
 
 
@@ -186,40 +155,16 @@ $data=PerfilController::staticIndex();
 ?>
 
 
-                                    <div class="form-group row">
-    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Destinatarios:') }}</label>
-
-    <div class="col-md-6">
-        <select id="SelectUser" name="multiselect[]" multiple="multiple" required="">
-            
-        
-        @foreach ($data as $perfil)
-        <option value="{{$perfil->puesto}}">{{$perfil->puesto}}</option>
-           
-        @endforeach
-        
-        @foreach ($usuarios as $email)
-            
-            <option value="{{$email['id']}}">{{$email['email']}}</option>
-            @endforeach
-
-
-        </select>
-
-    </div>
-</div>
-
-
 <script type="text/javascript">
-$( "#SelectUser" ).change(function() {
+$( "#example-getting-started" ).change(function() {
 
-console.log($('#SelectUser').val());
+console.log($('#example-getting-started').val());
 
 });
 
 $(document).ready(function() {
             
-                $('#SelectUser').multiselect({
+                $('#example-getting-started').multiselect({
                     includeSelectAllOption: true,
                     enableFiltering: true
                 });
@@ -231,6 +176,18 @@ $(document).ready(function() {
 
 
 
+                        <div class="form-group row">
+                                <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona tags') }}</label>
+
+                                <div class="col-md-6">
+                                    <select id="example-getting-started" name="multiselect[]" multiple="multiple" required="">
+                                        @foreach ($Tags as $tag)
+                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
 
                                     <div class="form-group row">
                                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Autor:') }}</label>
@@ -271,18 +228,6 @@ $(document).ready(function() {
                                         </div>
                                     </div>
 
-                                   <!--   <div class="form-group row">
-                                            <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Perfiles Destinatarios:</label>
-
-                                            <div class="col-md-6">
-                                                <select class="form-control " id="SelectUser" name="SelectUs">
-                                                    @foreach ($data as $perfil)
-                                                    <option value="{{$perfil->puesto}}">{{$perfil->puesto}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-
-                                        </div> -->
 
                                         <div class="form-group row mb-0">
                                             <div class="col-md-6 offset-md-4">

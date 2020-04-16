@@ -21,13 +21,13 @@ class DatabaseSeeder extends Seeder
         $this->call('PermissionsTableSeeder');
         $this->call('RolesTableSeeder');
         $this->call('ConnectRelationshipsSeeder');
-        
+        $this->call('PerfilTableSeeder');
         $this->call('UsersTableSeeder');
 
         $this->call('TagsTableSeeder');
         $this->call('MicrocontenidosTableSeeder');
 
-        $this->call('PerfilTableSeeder');
+
         //$this->call('UsersTableSeeder');
 
     Model::reguard();

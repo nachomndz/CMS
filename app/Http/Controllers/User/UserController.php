@@ -61,6 +61,13 @@ class UserController extends Controller
 
             $user->save();
 
+
+
+
+            //Asignar al usuario creado tag's
+          //  $user->temas = $request->temas;
+
+
             return response()->json($user, 201);
 
 
@@ -220,13 +227,25 @@ class UserController extends Controller
         
         //id del puesto dado 
         $id_perfil=Perfil::where('puesto', $puesto)->first()->id;       
-      $user = User::where('perfil_id', $id_perfil)->get()->pluck('id');
+     //return $id_perfil;
+        $user = User::where('perfil_id', $id_perfil)->get()->pluck('id');
 
       //retorna usuarios que tienen el puesto pasado por parámetro
         return $user;
     }
 
 
+
+
+    public static function obtenerIdsPorTag($id_tag){
+       
+        $user = array_get(User::with('Tags')
+        ->whereHas('Tags', function($query)use($id_tag){
+            $query->where('tag_id',$id_tag);
+        })->get(),0);
+
+        return $user->id;
+    }
 
 
 }

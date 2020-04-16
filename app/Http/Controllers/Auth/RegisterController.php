@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Tag;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,7 +68,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user= User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
@@ -78,5 +79,22 @@ class RegisterController extends Controller
             'perfil_id' => $data['perfil_id'],
          
         ]);
+
+
+        foreach ($data['multiselect'] as $tag){
+
+       
+            $user->tags()
+              ->attach(Tag::where('id', $tag)->first());
+
+      
+        }
+
+      /*  
+
+*/
+
+
+        return $user;
     }
 }

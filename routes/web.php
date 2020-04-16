@@ -32,7 +32,12 @@ Route::get('miarea', function(){
 });
 //acceso restringido a menos que tengas rol de editor
 Route::get('newsEdit','EdicionController@index')->name('newsEdit');
-   
+
+Route::get('newsTag','EdicionPorTagController@index')->name('newsTag');
+
+
+Route::get('tagsEditor','tagsEditorController@index')->name('tagsEditor');
+
 /*Route::get('newsEdit', function(){
     return view('newsEdit');
 });*/
@@ -49,5 +54,17 @@ Route::any('mibbddpma', '\Aranyasen\LaravelAdminer\AdminerAutologinController@in
 
 
 //Que quiere decir que cuando se realice 
-//una petición post a microcontenido se ejecutará el método store del controlador MensajesController.
+//una petición post a microcontenido se ejecutará el método store del controlador MicrocontenidosController.
 Route::post('microcontenido', 'Microcontenido\MicrocontenidoController@store')->name('store');
+
+
+
+
+Route::post('almacenaPorTag', 'Microcontenido\MicrocontenidoController@almacenaPorTag')->name('almacenaPorTag');
+
+
+
+Route::post('guardarTag','Tag\TagController@store')->name('guardarTag');
+
+
+Route::post('borrarTag','Tag\TagController@borrarTag')->name('borrarTag');

@@ -3,12 +3,18 @@
 namespace App\Http\Controllers\Microcontenido;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\metodosController;
 use App\Http\Controllers\User\UserController;
 use App\Microcontenido;
 use Illuminate\Http\Request;
 
 class MicrocontenidoController extends Controller
 {
+
+
+
+  //  protected $redirectTo = '/newsEdit';
+
     /**
      * Display a listing of the resource.
      *
@@ -81,12 +87,6 @@ class MicrocontenidoController extends Controller
 //usar para quitar repetidos array_unique(array)
 
 
-
-
-
-
-
-
 $lista_de_ids=[];
 
 $array=$request->multiselect;
@@ -136,15 +136,27 @@ for ($i=0; $i <count($lista_de_ids) ; $i++) {
       //echo $lista_de_ids[$i][$j].'<br>';
 
 $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigido', 'visible' => 1]);
-     
+
+
     }
     
     
     }
-    return;
 //FUNCIONAL
 //$microcontenidos->users()->attach($request->user , ['opciones' => 'dirigido' , 'visible' => 1]); //['visible' => 1]);
       // User::find($request->user)->Microcontenido()->save($microcontenido, '')
+
+
+      metodosController::redirect_now('/newsEdit');
+
+
+
+
+
+
+
+
+
         return response()->json($microcontenidos, 201);
 
     }
@@ -248,6 +260,79 @@ $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigid
 
 
 
+
+
+    public function almacenaPorTag(Request $request)
+    {
+        //
+
+       // $request->json_encode('noticia');
+
+        
+        $validatedData = $request->validate([
+            'tipo' => 'required|max:255',
+         
+
+            'titulo' => 'required|max:255',
+            'subtitulo' => 'required|max:255',
+            'texto' => 'required|max:255',
+            'autor' => 'required|max:255',
+            'comienza' => 'required|date',
+            'caduca' => 'required|date',
+          
+        ]);
+
+
+
+        $microcontenidos = new Microcontenido();   
+
+        $microcontenidos->tipo = $request->tipo;
+        $microcontenidos->titulo = $request->titulo;
+        $microcontenidos->subtitulo = $request->subtitulo;
+        $microcontenidos->texto = $request->texto;
+        $microcontenidos->autor = $request->autor;
+        $microcontenidos->comienza = $request->comienza;
+        $microcontenidos->caduca = $request->caduca;
+   
+
+        $microcontenidos->save();
+
+
+
+        $lista_de_tags=[];
+
+        $lista_de_tags=$request->multiselect;
+
+        for ($j=0; $j<count($lista_de_tags) ; $j++) { 
+           
+           return $microcontenidos->tags();
+            $microcontenidos->tags()->attach('id',$lista_de_tags[$j]);
+        }
+
+
+       $lista_de_ids_users=[];
+        for ($h=0; $h<count($lista_de_tags) ; $h++) { 
+           array_push( $lista_de_ids_users ,UserController::obtenerIdsPorTag($lista_de_tags[$h]));
+
+
+        }
+
+
+
+
+        for ($i=0; $i <count($lista_de_ids_users) ; $i++) { 
+
+            $microcontenidos->users()->attach($lista_de_ids_users[$i], ['opciones' => 'tag', 'visible' => 1]);
+
+
+
+        }
+
+
+
+        return response()->json( $microcontenidos, 201);
+
+    }
 
 
 }

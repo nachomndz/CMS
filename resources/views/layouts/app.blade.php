@@ -80,8 +80,19 @@
                                                                 ?>
 
                                         <a class="dropdown-item" href="{{ url('/newsEdit') }}" onclick="">
-                                                                        {{ __('Crea noticia') }}
+                                                                        {{ __('Contenido directo') }}
                                                                     </a>
+
+
+                                                                    <a class="dropdown-item" href="{{ url('/newsTag') }}" onclick="">
+                                        {{ __('Contenido por tag') }}
+                                    </a>
+
+
+
+                                    <a class="dropdown-item" href="{{ url('/tagsEditor') }}" onclick="">
+                                        {{ __('Crear/Borrar tags') }}
+                                    </a>
                                         <?php
                                                             }}  ?>
 
@@ -150,18 +161,18 @@
                         </ul>
                     </div>
                     <div class="col-md-6 item text">
-                        <h3>Company Name</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum vel in justo.</p>
+                        <h3>Final project title</h3>
+                        <p>Microcontents Management System and Notifications from External and Independent Projects</p>
                     </div>
                     <div class="col item social">
                         <a href="">
                     <i class="icon ion-social-facebook"></i></a>
                     <a href="https://twitter.com/nachomndzz"><i class="icon ion-social-twitter">
 
-                    </i></a><a href="#"><i class="icon ion-social-snapchat"></i></a>
+                    </i></a><a href="https://www.linkedin.com/in/ignaciomendz/"><i class="icon ion-social-linkedin"></i></a>
                     <a href="#"><i class="icon ion-social-instagram"></i></a></div>
                 </div>
-                <p class="copyright">Company Name © 2018</p>
+                <p class="copyright">Ignacio mendez © 2020</p>
             </div>
         </footer>
     </div>

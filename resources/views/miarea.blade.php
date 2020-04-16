@@ -48,7 +48,7 @@ use Illuminate\Support\Facades\Auth;
 
                 @csrf
                <div class="form-group row">
-                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre') }}</label>
+                            <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="nombre" type="text"  name="name" value="<?php echo $resultado['name']; ?>"  autofocus>
@@ -60,7 +60,7 @@ use Illuminate\Support\Facades\Auth;
 
 
                         <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="<?php echo $resultado['email']; ?>" ><!--value="{{ old('email') }}" >-->
@@ -68,7 +68,7 @@ use Illuminate\Support\Facades\Auth;
                         </div></div>
 
                         <div class="form-group row">
-                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono') }}</label>
+                            <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono:') }}</label>
 
                             <div class="col-md-6">
                                 <input id="telefono" type="telefono"  name="telefono" value="<?php echo $resultado['telefono']; ?>"  >
@@ -81,22 +81,31 @@ use Illuminate\Support\Facades\Auth;
                             </div>
                         </div>
 
+                        
                         <div class="form-group row">
-                        <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de registro') }}</label>
+                        <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de registro:') }}</label>
 
-
-
+                        <div class="col-md-6">
                         <label for="tlf" class="col-md-4 col-form-label text-md-right"  ><?php echo $resultado['created_at']; ?> </label>
 
                             </div>
+                        </div>
+                              
 
-
-
-
-                 <select id="example-getting-started"  name="multiselect[]" multiple="multiple" required="">
+                            <div class="form-group row">
+                            <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Tus temas:') }}</label>
+                 
+                            <div class="col-md-6">
+                            <select id="example-getting-started"  name="multiselect[]" multiple="multiple" required="">
                         @foreach ($Tags as $tag)
                          <option value="{{$tag->name}}">{{$tag->name}}</option>
-            @endforeach
+                            @endforeach
+
+
+                                </div>
+                            </div>
+
+            
                     </select>
 
                             <script type="text/javascript">

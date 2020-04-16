@@ -8,6 +8,29 @@
 </style>
 
 @section('content')
+
+
+<?php
+
+use App\Http\Controllers\Tag\TagController;
+use App\Http\Controllers\User\UserController;
+
+use Illuminate\Support\Facades\Auth;
+
+               
+  
+
+
+
+         $Tags = TagController::staticIndex();
+
+                ?>
+
+
+
+<body>
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -83,7 +106,7 @@
 
 
 <!---puesto--->
-<div class="form-group row">
+<!--<div class="form-group row">
                             <label for="perfi_id" class="col-md-4 col-form-label text-md-right">{{ __('Puesto') }}</label>
 
                        
@@ -94,11 +117,11 @@
 
                             <input id="perfil_id" type="radio" name="perfil_id" class="form-control @error('name') is-invalid @enderror" value="2"> Empleado
 </div>
-</div> </div>
+</div> </div>-->
 
 
 
-                        <div class="form-group row">
+                     <!--   <div class="form-group row">
                                 <label for="intereses" class="col-md-4 col-form-label text-md-right">{{ __('Intereses:') }}</label>
 
 
@@ -117,13 +140,85 @@
 
                         </div>
 
-
+-->
               
 
                     
+<?php
+use App\Http\Controllers\Perfil\PerfilController;
+
+$data=PerfilController::staticIndex();
+
+?>
+
+                            <div class="form-group row">
+                                        <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Puesto:</label>
+
+                                        <div class="col-md-6">
+                                            <select class="form-control " id="perfil_id" name="perfil_id" >
+                                       
+                                          
+                                          @foreach ($data as $perfil)
+                                                <option value="{{$perfil['id']}}">{{$perfil['puesto']}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                    </div>          
+
+
+
                         
 
-</div>
+
+
+
+
+
+
+                                    <div class="form-group row">
+                            <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Temas que te interesan:') }}</label>
+                 
+                            <div class="col-md-6">
+                            <select id="example-getting-started"  name="multiselect[]" multiple="multiple" required="">
+                        @foreach ($Tags as $tag)
+                         <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+
+
+                                </div>
+                            </div>
+
+
+
+
+
+                            <div class="form-group row">
+                            <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Temas que te interesan:') }}</label>
+                 
+                            <div class="col-md-6">
+                            <select id="example-getting-started"  name="multiselect[]" multiple="multiple" required="">
+                        @foreach ($Tags as $tag)
+                         <option value="{{$tag->id}}">{{$tag->name}}</option>
+                            @endforeach
+
+
+                                </div>
+                            </div>
+
+            
+
+            
+
+
+            
+
+
+
+    
+
+
+
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
@@ -145,6 +240,24 @@
         </div>
     </div>
 </div>
+
+
+</body>
+
+
+
+<script type="text/javascript">
+           
+           $(document).ready(function() {
+               $('#example-getting-started').multiselect({
+                   includeSelectAllOption: true,
+                   enableFiltering: true
+               });
+           });
+       </script>
+
+
+
 
 
 @endsection
