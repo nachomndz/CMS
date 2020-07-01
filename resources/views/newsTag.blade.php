@@ -116,17 +116,19 @@
 
                                 </div>
 
+                 
                                 <div class="form-group row">
                                     <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Escoge la categoría de la noticia:</label>
 
                                     <div class="col-md-6">
                                         <select class="form-control " id="tipo" name="tipo">
+                                            <option>Economía</option>
+                                            <option>Empresa</option>
+                                            <option>Reunión</option>
+                                            <option>Planificación futura</option>
                                             <option>Ocio</option>
-                                            <option>Deportes</option>
-                                            <option>Animales</option>
-                                            <option>Política</option>
-                                            <option>Informática</option>
-                                            <option>Videojuegos</option>
+                                            <option>Off-Topic</option>
+                                            <option>Información Urgente</option>
                                         </select>
                                     </div>
 

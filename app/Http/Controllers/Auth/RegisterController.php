@@ -90,6 +90,8 @@ class RegisterController extends Controller
       
         }
 
+       // $user->microcontenidos()->attach()
+
       /*  
 
 */

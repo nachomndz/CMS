@@ -71,6 +71,9 @@ class MicrocontenidoController extends Controller
         $microcontenidos->titulo = $request->titulo;
         $microcontenidos->subtitulo = $request->subtitulo;
         $microcontenidos->texto = $request->texto;
+
+        //$microcontenidos->multiselect = $request->multiselect;
+
         $microcontenidos->autor = $request->autor;
         $microcontenidos->comienza = $request->comienza;
         $microcontenidos->caduca = $request->caduca;
@@ -87,10 +90,10 @@ class MicrocontenidoController extends Controller
 //usar para quitar repetidos array_unique(array)
 
 
+
 $lista_de_ids=[];
-
 $array=$request->multiselect;
-
+/*
 if(!is_numeric($array[0])   ){
 
 
@@ -110,11 +113,28 @@ if(!is_numeric($array[2])   ){
 
     array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[2]));
 }
+*/
+
+//retocar
 
 
-//$repetidos=array_merge($array,$lista_de_ids);
+for ($h=0; $h<count($array); $h++) {
 
-$lista_de_ids=array_unique($lista_de_ids);
+    if(!is_numeric($array[$h]))
+    array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[$h]));
+
+    }
+    
+
+ //return $lista_de_ids;
+
+$repetidos=array_merge($array,$lista_de_ids);
+
+
+
+//$lista_de_ids=array_unique($array,$lista_de_ids);
+
+$lista_de_ids=array_unique($repetidos);
 
 
 
@@ -125,15 +145,24 @@ $lista_de_ids=array_unique($lista_de_ids);
 //}
 //$longitud = count($lista_de_ids);
 
-
 //Recorro todos los elementos
+//return $lista_de_ids;
 
-for ($i=0; $i <count($lista_de_ids) ; $i++) { 
-    
-    for($j=0; $j<count($lista_de_ids[$i]); $j++)
+$comienzo=count($array);
+
+//return $comienzo;
+for ($i=$comienzo; $i <count($lista_de_ids) ; $i++) { 
+   
+   // for($j=0; $j<count($lista_de_ids[$i]); $j++)
+   for($j=0; $j<count($lista_de_ids[$i]); $j++)
+   
       {
       //saco el valor de cada elemento
-      //echo $lista_de_ids[$i][$j].'<br>';
+      echo $lista_de_ids[$i][$j].'<br>';
+
+
+
+
 
 $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigido', 'visible' => 1]);
 
@@ -305,10 +334,10 @@ $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigid
         $lista_de_tags=$request->multiselect;
 
 
+        //return $lista_de_tags;
         
         for ($j=0; $j<count($lista_de_tags) ; $j++) { 
            
-          
             $microcontenidos->tags()->attach($lista_de_tags[$j]);
 
 
@@ -318,14 +347,16 @@ $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigid
 
         //hasta aquí funciona
       //  return $lista_de_tags;
-
        $lista_de_ids_users=[];
         for ($h=0; $h<count($lista_de_tags) ; $h++) { 
+            
+            //si es un 
+           
+
            array_push($lista_de_ids_users ,UserController::obtenerIdsPorTag($lista_de_tags[$h]));
+            }
 
-
-        }
-
+        
 
         //return $lista_de_ids_users;
 
@@ -343,6 +374,10 @@ $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigid
         return response()->json( $microcontenidos, 201);
 
     }
+
+
+
+    
 
 
 }

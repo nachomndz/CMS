@@ -31,6 +31,8 @@ use Illuminate\Support\Facades\Auth;
 
          $Tags = TagController::staticIndex();
 
+         
+
                 ?>
 
 
@@ -92,7 +94,7 @@ use Illuminate\Support\Facades\Auth;
                         </div>
                               
 
-                            <div class="form-group row">
+                          <!--  <div class="form-group row">
                             <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Tus temas:') }}</label>
                  
                             <div class="col-md-6">
@@ -106,7 +108,13 @@ use Illuminate\Support\Facades\Auth;
                             </div>
 
             
-                    </select>
+                    </select>-->
+
+                    <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Tus tags:') }}</label>
+
+
+
+
 
                             <script type="text/javascript">
            
