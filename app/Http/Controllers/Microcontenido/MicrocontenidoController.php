@@ -346,22 +346,38 @@ $microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigid
      
 
         //hasta aquí funciona
-      //  return $lista_de_tags;
+      // return $lista_de_tags;
        $lista_de_ids_users=[];
-        for ($h=0; $h<count($lista_de_tags) ; $h++) { 
-            
+        for ($i=0; $i<count($lista_de_tags) ; $i++) { 
+           //for($j=0 ; $j<count($lista_de_tags[$i]); $j++) {
             //si es un 
            
 
-           array_push($lista_de_ids_users ,UserController::obtenerIdsPorTag($lista_de_tags[$h]));
+           array_push($lista_de_ids_users ,UserController::obtenerIdsPorTag($lista_de_tags[$i]));
             }
-
+        //}
         
 
-        //return $lista_de_ids_users;
+       $lista_users_repetidos=[];
+       for ($i=0; $i<count($lista_de_ids_users) ; $i++){
+           for($j=0 ; $j<count($lista_de_ids_users[$i]); $j++){
+      
 
+            array_push($lista_users_repetidos,$lista_de_ids_users[$i][$j]);
+
+         }
+        
+        
+        }
+
+//quitar repetidos
+
+$lista_users_sin_repetir=array_unique($lista_users_repetidos);
+
+//return $lista_users_sin_repetir;
 
         for ($i=0; $i <count($lista_de_ids_users) ; $i++) { 
+            
 
             $microcontenidos->users()->attach($lista_de_ids_users[$i], ['opciones' => 'tag', 'visible' => 1]);
 

@@ -239,15 +239,20 @@ class UserController extends Controller
 
     public static function obtenerIdsPorTag($id_tag){
        
-        $user = array_get(User::with('Tags')
+       /* $user = array_get(User::with('Tags')
         ->whereHas('Tags', function($query)use($id_tag){
             $query->where('tag_id',$id_tag);
         })->get(),0);
 
+*/
 
+return User::with('Tags')
+        ->whereHas('Tags', function($query)use($id_tag){
+            $query->where('tag_id',$id_tag);
+        })->get();
 
-        return $user;
-        return $user->id;
+       // return $user;
+        //return $user->id;
     }
 
 
