@@ -256,4 +256,11 @@ return User::with('Tags')
     }
 
 
+
+
+public static function asignarNoticiasPorTag(User $user){
+
+    $tags= $user->tags->name;
+}
+
 }

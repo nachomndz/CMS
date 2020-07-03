@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\metodosController;
 use App\Http\Controllers\User\UserController;
 use App\Microcontenido;
+use App\Perfil;
 use Illuminate\Http\Request;
 
 class MicrocontenidoController extends Controller
@@ -47,7 +48,7 @@ class MicrocontenidoController extends Controller
     public function store(Request $request)
     {
         // 
-        //return $request;
+        
         
       
         //$request->json_encode('noticia');
@@ -82,101 +83,128 @@ class MicrocontenidoController extends Controller
 
     
 
-//saco el numero de elementos
-//convierto string separado por comas a array
-//$array = explode(",", $request->user);
-//saco su longitud
-
-//usar para quitar repetidos array_unique(array)
 
 
 
 $lista_de_ids=[];
 $array=$request->multiselect;
-/*
-if(!is_numeric($array[0])   ){
+
+//arrayy es el array de perfiles
+$arrayy=[];
+for($h=0; $h<count($array); $h++){
 
 
-   array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[0]));
-    
-
+    //sino es un valor numerico es un perfil.
+    if(!is_numeric($array[$h])){
+        array_push($arrayy,$array[$h]);
+    }
 }
 
+$objetosPerfiles=Perfil::whereIn('puesto', $arrayy)->get();
 
-if(!is_numeric($array[1])   ){
-
-    array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[1]));
-
-}
-
-if(!is_numeric($array[2])   ){
-
-    array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[2]));
-}
-*/
-
-//retocar
+$microcontenidos->perfiles()->saveMany($objetosPerfiles);
 
 
 for ($h=0; $h<count($array); $h++) {
 
     if(!is_numeric($array[$h]))
+    //me devuelve los id's de los usuarios con esos perfiles
     array_push($lista_de_ids,UserController::obtenerIdsPorPerfil($array[$h]));
 
+    /*else{
+        array_push($lista_de_ids,$array[$h]);
     }
-    
+*/
+    }
+    $arraydeids=[];
+    $arraydeids=$lista_de_ids;
 
- //return $lista_de_ids;
+
+
+   
+    //obtenemos los que son directos
+
+    $lista_directos=[];
+
 
 $repetidos=array_merge($array,$lista_de_ids);
 
-
+//return $repetidos;
 
 //$lista_de_ids=array_unique($array,$lista_de_ids);
 
 $lista_de_ids=array_unique($repetidos);
 
 
-
-
-    # code...
-//return $lista_de_ids;
-//$uniendo_arrays = array_merge($lista_de_ids[$i]);
-//}
-//$longitud = count($lista_de_ids);
-
-//Recorro todos los elementos
-//return $lista_de_ids;
-
 $comienzo=count($array);
 
-//return $comienzo;
-for ($i=$comienzo; $i <count($lista_de_ids) ; $i++) { 
-   
-   // for($j=0; $j<count($lista_de_ids[$i]); $j++)
+//return $lista_de_ids;
+
+$arraydefinitivo=[];
+
+
+for($v=0;$v<count($lista_de_ids); $v++){
+    if (is_numeric($lista_de_ids[$v])){
+
+       array_push($arraydefinitivo, $lista_de_ids[$v]);
+
+    }
+}
+
+
+for ($i=$comienzo; $i <count($lista_de_ids) ; $i++) {    
    for($j=0; $j<count($lista_de_ids[$i]); $j++)
    
       {
       //saco el valor de cada elemento
-      echo $lista_de_ids[$i][$j].'<br>';
+      //echo $lista_de_ids[$i][$j].'<br>';
+
+      array_push($arraydefinitivo, $lista_de_ids[$i][$j]);
 
 
 
-
-
-$microcontenidos->users()->attach($lista_de_ids[$i][$j], ['opciones' => 'dirigido', 'visible' => 1]);
-
-
+     
     }
     
     
     }
+$arraysinrepetidos=[];
+    for ($i=0; $i <count($arraydefinitivo) ; $i++) { 
+
+        if(intval($arraydefinitivo[$i])==null) {
+        array_push($arraysinrepetidos[$i],intval($arraydefinitivo[$i]));}
+    }
+
+
+    $arraysinrepetidos=array_unique($arraydefinitivo);
+ 
+
+
+    for ($i=0; $i <count($arraysinrepetidos) ; $i++) { 
+   
+        // for($j=0; $j<count($lista_de_ids[$i]); $j++)
+        //for($j=0; $j<count($arraydefinitivo[$i]); $j++)
+        
+           //{
+
+
+            $microcontenidos->users()->attach($arraysinrepetidos[$i], ['opciones' => 'dirigido', 'visible' => 1]);
+
+           }
 //FUNCIONAL
 //$microcontenidos->users()->attach($request->user , ['opciones' => 'dirigido' , 'visible' => 1]); //['visible' => 1]);
       // User::find($request->user)->Microcontenido()->save($microcontenido, '')
 
 
+
+     /* for($h=0;$h<count($lista_de_ids);$h++){
+        //asignar el microcontenido a los perfiles
+        $microcontenidos->perfiles()->attach($arraydeids[$h]);
+
+
+    }*/
       metodosController::redirect_now('/newsEdit');
+
 
 
 
@@ -387,6 +415,7 @@ $lista_users_sin_repetir=array_unique($lista_users_repetidos);
 
 
 
+        metodosController::redirect_now('/newsEdit');
         return response()->json( $microcontenidos, 201);
 
     }

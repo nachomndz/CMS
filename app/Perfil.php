@@ -23,7 +23,7 @@ class Perfil extends Model
     }
   
     public function microcontenidos(){
-        return $this->belongsToMany(Microcontenido::class);
+        return $this->belongsToMany(Microcontenido::class, 'perfil_contenidos', 'perfil_id','contenido_id');
     }
 
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use App\Microcontenido;
+use App\Perfil;
 use App\Tag;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -81,14 +83,77 @@ class RegisterController extends Controller
         ]);
 
 
+        //asingamos los tags al usuario.
         foreach ($data['multiselect'] as $tag){
 
        
             $user->tags()
               ->attach(Tag::where('id', $tag)->first());
-
-      
         }
+
+     
+        $n=Perfil::with('microcontenidos')
+        ->where('id',$data['perfil_id'])
+        ->whereHas('microcontenidos')
+        ->get();
+
+
+        $ids_microcontenidos_del_perfil=$n->map(function($val, $key){
+            return $val->microcontenidos
+            ->map(function($v,$k){
+                return $v->pivot->contenido_id;
+            });
+
+        })->get(0);
+        //->toArray();
+
+        if($ids_microcontenidos_del_perfil){
+            $ids_microcontenidos_del_perfil->toArray();
+            $user->microcontenidos()->attach($ids_microcontenidos_del_perfil, ['opciones' => 'dirigido', 'visible' => 1]);
+
+        }
+
+
+
+
+       
+
+
+
+     /*   $contenidosportag=Microcontenido::with('tags')
+        ->whereHas('tags',function($q){$q->whereIn('tag_id',[1,11]);})->get();
+        */
+        
+        $contenidosportag=Tag::with('microcontenidos')
+        ->whereIn('id',$data['multiselect'])
+        ->whereHas('microcontenidos')
+        ->get();
+
+
+
+
+       $ids_microcontenidos_delos_tags= $contenidosportag->map(function($val, $key){
+           return $val->microcontenidos
+           ->map(function($v,$k){
+               return $v->id;});
+            })->get(0);
+           // ->toArray();
+
+
+            if($ids_microcontenidos_delos_tags){
+
+                $ids_microcontenidos_delos_tags->toArray();
+                $user->microcontenidos()->attach($ids_microcontenidos_delos_tags, ['opciones' => 'tag', 'visible' => 1]);
+            }
+
+           
+
+        //App\Http\Controllers\Auth\Microcontenido micro;
+        
+
+        
+
+
 
        // $user->microcontenidos()->attach()
 

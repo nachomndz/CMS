@@ -16,6 +16,8 @@ class PerfilController extends Controller
     public function index()
     {
         //
+
+
     }
 
     /**
@@ -48,6 +50,8 @@ class PerfilController extends Controller
     public function show($id)
     {
         //
+
+       // $dato = Perfil::user($id)->id;
     }
 
     /**
