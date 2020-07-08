@@ -70,6 +70,8 @@ class TagController extends Controller
     public function show($id)
     {
         //
+
+        
     }
 
     /**

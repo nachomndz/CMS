@@ -38,9 +38,28 @@ Route::get('newsTag','EdicionPorTagController@index')->name('newsTag');
 
 Route::get('tagsEditor','tagsEditorController@index')->name('tagsEditor');
 
+
+Route::get('gestorUsuarios','gestorUsuariosController@index')->name('gestorUsuarios');
+
 /*Route::get('newsEdit', function(){
     return view('newsEdit');
 });*/
+
+/*Route::get('/test', function(){
+    $user=App\User::with('microcontenidos')->find(1)->microcontenidos->find(1)->pivot->where("visible",1)->get()->pluck('contenido_id');
+       //return $user;
+      $data= App\Microcontenido::whereIn('id', $user)->get();
+      return $data;
+});*/
+
+
+
+Route::get('get-contenidos/{id}','User\UserController@getMisContenidos')->name('getMisContenidos');
+
+
+Route::get('get-tags/{id}','User\UserController@mostrarTagsUsuario')->name('mostrarTagsUsuario');
+
+
 
 Auth::routes();
 
@@ -58,7 +77,9 @@ Route::any('mibbddpma', '\Aranyasen\LaravelAdminer\AdminerAutologinController@in
 Route::post('microcontenido', 'Microcontenido\MicrocontenidoController@store')->name('store');
 
 
+Route::post('ocultar-noticia', 'Microcontenido\MicrocontenidoController@ocultarNoticia')->name('ocultarNoticia');
 
+Route::post('filtrar-ocultas', 'Microcontenido\MicrocontenidoController@filtrarOcultas')->name('mostrarOcultas');
 
 Route::post('almacenaPorTag', 'Microcontenido\MicrocontenidoController@almacenaPorTag')->name('almacenaPorTag');
 

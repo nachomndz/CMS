@@ -40,14 +40,14 @@ class TagsTableSeeder extends Seeder
         ]);
 
         DB::table('tags')->insert([
-            'id' => 6,
+            'id' => 5,
             'name' => 'Team-Building',
           
         ]);
 
 
         DB::table('tags')->insert([
-            'id' => 7,
+            'id' => 6,
             'name' => 'Networking',
           
         ]);
@@ -55,7 +55,7 @@ class TagsTableSeeder extends Seeder
 
 
         DB::table('tags')->insert([
-            'id' => 8,
+            'id' => 7,
             'name' => 'Coronavirus',
           
         ]);
@@ -63,27 +63,27 @@ class TagsTableSeeder extends Seeder
 
 
         DB::table('tags')->insert([
-            'id' => 9,
+            'id' => 8,
             'name' => 'Infraestructura de red',
           
         ]);
 
 
         DB::table('tags')->insert([
-            'id' => 10,
+            'id' => 9,
             'name' => 'Servicios de limpieza',
           
         ]);
 
 
         DB::table('tags')->insert([
-            'id' => 11,
+            'id' => 10,
             'name' => 'Futuros proyectos',
           
         ]);
 
         DB::table('tags')->insert([
-            'id' => 12,
+            'id' => 11,
             'name' => 'Planificación de crecimiento',
           
         ]);

@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
 
 
@@ -93,6 +94,13 @@
                                     <a class="dropdown-item" href="{{ url('/tagsEditor') }}" onclick="">
                                         {{ __('Crear/Borrar tags') }}
                                     </a>
+
+
+                                    <a class="dropdown-item" href="{{ url('/gestorUsuarios') }}" onclick="">
+                                        {{ __('Gestionar Usuarios') }}
+                                    </a>
+
+
                                         <?php
                                                             }}  ?>
 

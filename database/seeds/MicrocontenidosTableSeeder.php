@@ -111,6 +111,9 @@ class MicrocontenidosTableSeeder extends Seeder
 
         App\Microcontenido::find(1)->users()->attach(1);   
         App\Microcontenido::find(2)->users()->attach(1);
+        App\Microcontenido::find(3)->users()->attach(1);
+        App\Microcontenido::find(4)->users()->attach(1);
+        App\Microcontenido::find(5)->users()->attach(1);
 
 
 
@@ -121,13 +124,13 @@ class MicrocontenidosTableSeeder extends Seeder
   
   
 
-        $tags=App\Tag::all();
+        //$tags=App\Tag::all();
 
          foreach($usuarios as $usuario){
              
   
   
-              $usuario->tags()->attach(mt_rand(1, 12));
+              $usuario->tags()->attach(mt_rand(1, 11));
   
     }
 

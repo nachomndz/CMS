@@ -84,7 +84,7 @@ public function perfil(){
 //belongsToMany se usa para muchos a muchos
 //modificado...
 public function microcontenidos(){
-    return $this->belongsToMany(Microcontenido::class,'user_content','user_id','contenido_id');//->as('microcontenido_user');
+    return $this->belongsToMany(Microcontenido::class,'user_content','user_id','contenido_id')->withPivot('opciones', 'visible');
 }
 
 //muchos a muchos con tags
@@ -93,24 +93,6 @@ public function tags(){
 }
 
 
-public static function getMisContenidos($id){
-       
-    $user = User::findOrFail($id);
-
-
-
-    $collection = collect();
-    foreach($user->microcontenidos as $microcontent){
-
-      $collection->push($microcontent);
-
-
-    } 
-
-
-    return $collection;
-
-}
 
 
 

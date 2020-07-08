@@ -7,7 +7,9 @@ use App\Http\Controllers\metodosController;
 use App\Http\Controllers\User\UserController;
 use App\Microcontenido;
 use App\Perfil;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MicrocontenidoController extends Controller
 {
@@ -415,12 +417,44 @@ $lista_users_sin_repetir=array_unique($lista_users_repetidos);
 
 
 
+    
+
+
         metodosController::redirect_now('/newsEdit');
         return response()->json( $microcontenidos, 201);
 
     }
 
 
+
+    public function ocultarNoticia(Request $request){
+
+
+        $user=User::find(Auth::user()->id);
+        
+        $user->microcontenidos()->updateExistingPivot($request->id,['visible'=>0]);
+
+
+
+    }
+
+
+
+    public function filtrarOcultas(){
+    
+        $id= Auth::user()->id;
+        
+        $user = User::with('microcontenidos')->where('id',$id)
+        ->get();
+        $user->map(function($val, $key)use($id){
+            return $val->microcontenidos
+            ->filter(function($v,$k)use($id){
+            return $v->pivot->user_id==$id && $v->pivot->visible==0;
+            });
+        });
+    
+        return $user;
+    }
 
     
 

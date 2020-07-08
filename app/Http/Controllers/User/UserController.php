@@ -3,9 +3,15 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\metodosController;
+use App\Microcontenido;
 use App\Perfil;
+use App\Tag;
 use App\User;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Collection as SupportCollection;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash as FacadesHash;
 
 class UserController extends Controller
@@ -156,6 +162,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+       // return $id;
+
+      // User::deleted($id);
+      User::find($id)->delete();
+      //User::destroy($id);
+
+      //return redirect()
+
+     
+
     }
 
 
@@ -215,10 +231,30 @@ class UserController extends Controller
     }
 
 
-    public static function misContenidos($id){
+    /*public static function misContenidos($id){
         return User::getMisContenidos($id);
-    }
+    }*/
 
+
+/* Obtiene contenidos del usuario que estén visibles*/ 
+    public static function getMisContenidos($id){
+       
+  
+   $users = User::with('microcontenidos')
+   ->where('id',$id)
+   ->get();
+   $users
+   ->map(function($val, $key)use($id){
+       return $val->microcontenidos
+       ->filter(function($v,$k)use($id){
+            return $v->pivot->user_id==$id && $v->pivot->visible==1;
+        });
+    });
+
+return $users;
+
+}
+    
 
 
 
@@ -234,6 +270,11 @@ class UserController extends Controller
         return $user;
     }
 
+
+    public static function obtenerPuestoPorId($id){
+
+        User::with('perfiles');
+    }
 
 
 
@@ -263,4 +304,48 @@ public static function asignarNoticiasPorTag(User $user){
     $tags= $user->tags->name;
 }
 
+
+
+public static function allUsers()
+    {
+        //
+        $users= User::all();
+        return $users;
+    }
+
+
+    public  function mostrarTagsUsuario($id){
+       
+
+       
+      
+
+
+        $array_ids_de_tag=User::with('Tags')->find($id)->tags->pluck('id');
+
+
+
+
+       $collection= new Collection();
+        foreach($array_ids_de_tag as $indice){
+
+           $collection->push(Tag::find($indice));
+
+
+        }
+
+
+        $array=[];
+
+       
+        foreach($collection as $tag){
+
+           // return $tag->name;
+            array_push($array,$tag->name);
+
+        }
+        
+
+        return $array;
+    }
 }
