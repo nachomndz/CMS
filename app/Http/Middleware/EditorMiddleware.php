@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Illuminate\Support\Facades\Auth;
 
 class EditorMiddleware
 {
@@ -24,11 +25,23 @@ class EditorMiddleware
     */
 
 
-    if (! $request->user()->hasRole('Editor')) {
+ 
+
+ if(is_null(Auth::user())){  
+    redirect('/login');
+
+ }
+else{
+    if ( ! $request->user()->hasRole('Editor')) {
         abort(403, "No tienes autorización para ingresar.");
     }
+
+
+}
 
 //return redirect('/newsEdit'); /*$next($request); */
 
 return $next($request);
-}}
+
+}
+}

@@ -61,28 +61,31 @@
 
             })
 
-        .catch(e => {
-            // Podemos mostrar los errores en la consola
-            console.log(e);
-        })
+            .catch(e => {
+                // Podemos mostrar los errores en la consola
+                console.log(e);
+            })
     }
-
-
-
-
 </script>
+
+
+<style>
+    div.hola {
+        margin-bottom: 30px;
+    }
+</style>
 
 <body>
 
-    <div class="container">
-    
+    <div class="container   hola ">
+
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">{{ __('Crea la noticia') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('almacenaPorTag') }}">
+                        <form enctype="multipart/form-data" action="{{ route('almacenaPorTag') }}" method="POST">
                             @csrf
 
                             <div>
@@ -92,8 +95,8 @@
                                     <div class="col-md-6">
                                         <input id="titulo" type="text" class="form-control @error('name') is-invalid @enderror" name="titulo" value="{{ old('name') }}" required autocomplete="titulo" autofocus> @error('name')
                                         <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span> @enderror
+                                            <strong>{{ $message }}</strong>
+                                        </span> @enderror
                                     </div>
                                 </div>
 
@@ -103,8 +106,8 @@
                                     <div class="col-md-6">
                                         <input id="subtitulo" type="text" name="subtitulo" required autocomplete="subtitulo"> @error('email')
                                         <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span> @enderror
+                                            <strong>{{ $message }}</strong>
+                                        </span> @enderror
                                     </div>
                                 </div>
 
@@ -116,7 +119,28 @@
 
                                 </div>
 
-                 
+
+                                <div class="form-group row ">
+
+                                    <label for="texto" class="col-md-4 col-form-label text-md-right">Inserta una imágen:</label>
+
+                                    <div class="col-md-6">
+
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile" name="image">
+                                            <label class="custom-file-label" for="customFile">Choose file</label>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+
+
+
+
                                 <div class="form-group row">
                                     <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Escoge la categoría de la noticia:</label>
 
@@ -136,123 +160,126 @@
 
                                 <?php
 
-use App\Http\Controllers\Perfil\PerfilController;
-use App\Http\Controllers\Tag\TagController;
-$usuarios=App\User::all();
+                                use App\Http\Controllers\Perfil\PerfilController;
+                                use App\Http\Controllers\Tag\TagController;
+
+                                $usuarios = App\User::all();
 
 
 
-$Tags = TagController::staticIndex();
+                                $Tags = TagController::staticIndex();
 
-    ?>
-
-                
-
-
-
-                                    <?php
-
-$data=PerfilController::staticIndex();
-
-?>
-
-
-<script type="text/javascript">
-$( "#example-getting-started" ).change(function() {
-
-console.log($('#example-getting-started').val());
-
-});
-
-$(document).ready(function() {
-            
-                $('#example-getting-started').multiselect({
-                    includeSelectAllOption: true,
-                    enableFiltering: true,
-                    maxHeight: 250,
-                });
-            });
-        </script>
+                                ?>
 
 
 
 
 
+                                <?php
 
-                        <div class="form-group row">
-                                <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona tags') }}</label>
+                                $data = PerfilController::staticIndex();
 
-                                <div class="col-md-6">
-                                    <select id="example-getting-started" name="multiselect[]" multiple="multiple" required="">
-                                        @foreach ($Tags as $tag)
-                                        <option value="{{$tag->id}}">{{$tag->name}}</option>
-                                        @endforeach
+                                ?>
 
-                                    </select>
+
+                                <script type="text/javascript">
+                                    $("#example-getting-started").change(function() {
+
+                                        console.log($('#example-getting-started').val());
+
+                                    });
+
+                                    $(document).ready(function() {
+
+                                        $('#example-getting-started').multiselect({
+                                            includeSelectAllOption: true,
+                                            enableFiltering: true,
+                                            maxHeight: 250,
+                                        });
+                                    });
+                                </script>
+
+
+
+
+
+
+                                <div class="form-group row">
+                                    <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona tags') }}</label>
+
+                                    <div class="col-md-6">
+                                        <select id="example-getting-started" name="multiselect[]" multiple="multiple" required="">
+                                            @foreach ($Tags as $tag)
+                                            <option value="{{$tag->id}}">{{$tag->name}}</option>
+                                            @endforeach
+
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
 
-                                    <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Autor:') }}</label>
-                                        <div class="col-md-6">
-                                            <input id="autor" type="text" name="autor" autofocus>
-
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Comienza:') }}</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="comienza" id="datepicker">
-                                        </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Autor:') }}</label>
+                                    <div class="col-md-6">
+                                        <input id="autor" type="text" name="autor" autofocus>
 
                                     </div>
+                                </div>
 
-                                    <div class="form-group row">
-                                        <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Caduca:') }}</label>
-                                        <div class="col-md-6">
-                                            <input type="text" name="caduca" id="datepicker1">
-                                        </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Comienza:') }}</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="comienza" id="datepicker">
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label for="formato" class="col-md-4 col-form-label text-md-right">{{ __('Opciones de Formato(Escoge ISO):') }}</label>
+                                </div>
 
-                                        <div class="col-md-6">
-                                            <select id="format">
-                                                <option value="mm/dd/yy">Default - mm/dd/yy</option>
-                                                <option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>
-                                                <option value="d M, y">Short - d M, y</option>
-                                                <option value="d MM, y">Medium - d MM, y</option>
-                                                <option value="DD, d MM, yy">Full - DD, d MM, yy</option>
-                                                <option value="&apos;day&apos; d &apos;of&apos; MM &apos;in the year&apos; yy">With text - 'day' d 'of' MM 'in the year' yy</option>
-                                            </select>
-                                            </p>
-                                        </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Caduca:') }}</label>
+                                    <div class="col-md-6">
+                                        <input type="text" name="caduca" id="datepicker1">
                                     </div>
+                                </div>
+
+                                <div class="form-group row">
+                                    <label for="formato" class="col-md-4 col-form-label text-md-right">{{ __('Opciones de Formato(Escoge ISO):') }}</label>
+
+                                    <div class="col-md-6">
+                                        <select id="format">
+                                            <option value="mm/dd/yy">Default - mm/dd/yy</option>
+                                            <option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>
+                                            <option value="d M, y">Short - d M, y</option>
+                                            <option value="d MM, y">Medium - d MM, y</option>
+                                            <option value="DD, d MM, yy">Full - DD, d MM, yy</option>
+                                            <option value="&apos;day&apos; d &apos;of&apos; MM &apos;in the year&apos; yy">With text - 'day' d 'of' MM 'in the year' yy</option>
+                                        </select>
+                                        </p>
+                                    </div>
+                                </div>
 
 
-                                        <div class="form-group row mb-0">
-                                            <div class="col-md-6 offset-md-4">
 
-                                                <button type="submit" class="btn btn-primary">
-                                                    {{ __('Crear') }}
 
-                                                </button>
+                                <div class="form-group row mb-0">
+                                    <div class="col-md-6 offset-md-4">
 
-                                            </div>
-                                        </div>
+                                        <button type="submit" class="btn btn-primary">
+                                            {{ __('Crear') }}
+
+                                        </button>
+
+                                    </div>
+                                </div>
 
                         </form>
 
-                        </div>
                     </div>
                 </div>
             </div>
-
-      
-     
         </div>
+
+
+
+    </div>
 
 </body>
 

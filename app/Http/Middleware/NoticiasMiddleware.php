@@ -21,6 +21,8 @@ class NoticiasMiddleware
         //comprobamos que sea un usuario logueado el que intenta acceder a la ruta
         if (Auth::check()==null){//! $request->user()->hasRole('User') or ! $request->user()->hasRole('Admin')){  ) {
             abort(403, "No tienes autorización para ingresar , por favor logueate.");
+
+            redirect('/login');
         }
 
 

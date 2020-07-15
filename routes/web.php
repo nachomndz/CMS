@@ -27,7 +27,7 @@ Route::get('noticias','showNewsController@index')->middleware('auth'); //,->name
 
 
 
-Route::get('miarea', function(){
+Route::get('miarea',function(){
     return view('miarea');
 });
 //acceso restringido a menos que tengas rol de editor
@@ -79,7 +79,10 @@ Route::post('microcontenido', 'Microcontenido\MicrocontenidoController@store')->
 
 Route::post('ocultar-noticia', 'Microcontenido\MicrocontenidoController@ocultarNoticia')->name('ocultarNoticia');
 
-Route::post('filtrar-ocultas', 'Microcontenido\MicrocontenidoController@filtrarOcultas')->name('mostrarOcultas');
+Route::post('mostrar-noticia', 'Microcontenido\MicrocontenidoController@mostrarNoticia')->name('mostrarNoticia');
+
+
+Route::post('filtrar-ocultas', 'Microcontenido\MicrocontenidoController@filtrar_ocultas');
 
 Route::post('almacenaPorTag', 'Microcontenido\MicrocontenidoController@almacenaPorTag')->name('almacenaPorTag');
 

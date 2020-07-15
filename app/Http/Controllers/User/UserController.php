@@ -240,20 +240,33 @@ class UserController extends Controller
     public static function getMisContenidos($id){
        
   
-   $users = User::with('microcontenidos')
+  /* $users = User::with('microcontenidos')
    ->where('id',$id)
    ->get();
-   $users
-   ->map(function($val, $key)use($id){
-       return $val->microcontenidos
-       ->filter(function($v,$k)use($id){
-            return $v->pivot->user_id==$id && $v->pivot->visible==1;
-        });
-    });
 
-return $users;
+$users = $users->get(0)->microcontenidos;
+$users=$users
+    ->filter(function($val)use($id){
+    return $val->filter(function($v,$k)use($id){
+        if($v->pivot->user_id==$id && $v->pivot->visible==1){
+            return true;
+        };
+    });
+   });
+
+return $users;*/
+
+
+$user=User::with('microcontenidos')->where('id',$id)->get()
+->map(function($val, $key)use($id){
+    return $val->microcontenidos->
+    filter(function($v,$k)use($id){
+        return $v->pivot->user_id==$id && $v->pivot->visible==1;});});
+
+return $user;
 
 }
+
     
 
 

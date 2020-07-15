@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Microcontenido extends Model
 {
@@ -10,12 +11,20 @@ class Microcontenido extends Model
 
 
     protected $fillable = [
-        'tipo', 'titulo', 'subtitulo', 'texto','autor','comienzo','caduca',
+        'tipo', 'titulo', 'subtitulo', 'texto','autor','comienzo','caduca','path',
     ];
 
 
     //Un Microcontenido pertenece a muchos usuarios,tags, perfiles.
     
+
+    public function getUrlPathAttribute(){
+
+        return Storage::url($this->path);
+    }
+
+    
+
     public function users(){
         return $this->belongsToMany(User::class,'user_content','contenido_id','user_id')->withPivot('opciones', 'visible');
     }

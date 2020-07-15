@@ -10,6 +10,15 @@
 
 
 
+<style>
+
+
+div.hola{
+    margin-bottom: 30px;
+}
+
+</style>
+
 <script>
     var j = jQuery.noConflict();
     j(function() {
@@ -72,9 +81,9 @@
 
 </script>
 
-<body>
+<body >
 
-    <div class="container">
+    <div class="container hola">
     
         <div class="row justify-content-center">
             <div class="col-md-8">
@@ -82,7 +91,7 @@
                     <div class="card-header">{{ __('Crea la noticia') }}</div>
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('store') }}">
+                        <form enctype="multipart/form-data" action="{{ route('store') }}" method="POST">
                             @csrf
 
                             <div>
@@ -115,6 +124,30 @@
                                     </div>
 
                                 </div>
+
+
+
+
+                                <div class="form-group row ">
+
+                                <label for="texto" class="col-md-4 col-form-label text-md-right">Inserta una imágen:</label>
+
+                                <div class="col-md-6">
+     
+                                <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="customFile" name="image">
+                                        <label class="custom-file-label" for="customFile">Choose file</label>
+                                       
+                                            </div>
+                                    
+                                    </div>
+
+
+                                        </div>
+
+
+
+
 
                                 <div class="form-group row">
                                     <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Escoge la categoría de la noticia:</label>

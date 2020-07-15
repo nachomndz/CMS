@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Microcontenido;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\metodosController;
 use App\Http\Controllers\User\UserController;
+use App\Image;
 use App\Microcontenido;
 use App\Perfil;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class MicrocontenidoController extends Controller
 {
@@ -80,6 +82,18 @@ class MicrocontenidoController extends Controller
         $microcontenidos->autor = $request->autor;
         $microcontenidos->comienza = $request->comienza;
         $microcontenidos->caduca = $request->caduca;
+
+
+
+
+        if($request->hasFile('image')){
+            $path=$request->image->store('public');
+
+            $microcontenidos->path = $path;
+          
+        }
+
+
 
         $microcontenidos->save();
 
@@ -340,6 +354,8 @@ $arraysinrepetidos=[];
             'caduca' => 'required|date',
           
         ]);
+        
+     
 
 
 
@@ -353,6 +369,20 @@ $arraysinrepetidos=[];
         $microcontenidos->comienza = $request->comienza;
         $microcontenidos->caduca = $request->caduca;
    
+
+        if($request->hasFile('image')){
+            $path=$request->image->store('public');
+
+            $microcontenidos->path = $path;
+           // Image::create(['path' => $path]);
+
+
+          /*  Storage::disk('local')->put('file.txt', 'Contents');
+            Storage::put('file.jpg', $request->image);
+*/
+        }
+
+
 
         $microcontenidos->save();
 
@@ -415,12 +445,7 @@ $lista_users_sin_repetir=array_unique($lista_users_repetidos);
 
         }
 
-
-
-    
-
-
-        metodosController::redirect_now('/newsEdit');
+        metodosController::redirect_now('/newsTag');
         return response()->json( $microcontenidos, 201);
 
     }
@@ -440,23 +465,31 @@ $lista_users_sin_repetir=array_unique($lista_users_repetidos);
 
 
 
-    public function filtrarOcultas(){
-    
-        $id= Auth::user()->id;
+    public function mostrarNoticia(Request $request){
+
+
+        $user=User::find(Auth::user()->id);
         
-        $user = User::with('microcontenidos')->where('id',$id)
-        ->get();
-        $user->map(function($val, $key)use($id){
-            return $val->microcontenidos
-            ->filter(function($v,$k)use($id){
-            return $v->pivot->user_id==$id && $v->pivot->visible==0;
-            });
-        });
-    
-        return $user;
+        $user->microcontenidos()->updateExistingPivot($request->id,['visible'=>1]);
+
+
+
     }
 
+
+
+    public static function filtrar_ocultas(){
+
+    $id= Auth::user()->id;
+    $user_contenidos=User::with('microcontenidos')->where('id',$id)->get();
+
+    $result=$user_contenidos->get(0)->microcontenidos->filter(function($v, $k){return $v->pivot->visible == 0;})->values();
+
     
+
+    return $result;
+
+}
 
 
 }
