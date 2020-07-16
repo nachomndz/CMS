@@ -327,7 +327,7 @@ public static function allUsers()
     }
 
 
-    public  function mostrarTagsUsuario($id){
+    public static function mostrarTagsUsuario($id){
        
 
        

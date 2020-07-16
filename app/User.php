@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\CambiarPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
@@ -99,5 +100,10 @@ public function tags(){
 
 
 
+
+public function sendPasswordResetNotification($token)
+{
+    $this->notify(new CambiarPassword($token));
+}
 
 }

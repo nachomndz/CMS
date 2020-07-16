@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Auth;
 
                 $dato = Auth::user()->id;
 
-        
+                $tags_del_usuario=UserController::mostrarTagsUsuario($dato);
                 
 
               $dato= UserController::informacionPorId($dato);
@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Auth;
             $resultado=  $dato;
 
 
+           
 
          $Tags = TagController::staticIndex();
 
@@ -88,11 +89,15 @@ use Illuminate\Support\Facades\Auth;
                         <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Fecha de registro:') }}</label>
 
                         <div class="col-md-6">
-                        <label for="tlf" class="col-md-4 col-form-label text-md-right"  ><?php echo $resultado['created_at']; ?> </label>
+                        <label for="creado" class=" col-form-label text-md-right"  ><?php echo $resultado['created_at']; ?> </label>
 
                             </div>
                         </div>
                               
+
+
+
+
 
                           <!--  <div class="form-group row">
                             <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Tus temas:') }}</label>
@@ -110,7 +115,24 @@ use Illuminate\Support\Facades\Auth;
             
                     </select>-->
 
+                    <div class="form-group row">
                     <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Tus tags:') }}</label>
+
+
+                    <div class="col-md-6">
+  
+                        <label for="tustags" class=" col-form-label text-md-right"  ><?php 
+                        
+                        for($i=0; $i<count($tags_del_usuario); $i++){
+
+                        
+                        echo $tags_del_usuario[$i]; }
+                        
+                        ?> </label>
+
+                            </div>
+</div>
+
 
 
 

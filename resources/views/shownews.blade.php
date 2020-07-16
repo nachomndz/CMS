@@ -16,7 +16,7 @@
 </script>
 <style>
    div.noticia {
-   width: 50%;
+   width: 100%;
    float: left;
    border: 1px solid #e1e1e1;
    transition: all .3s ease;
