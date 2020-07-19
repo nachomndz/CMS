@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Foundation\Auth\User as AuthUser;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -32,8 +35,17 @@ class LoginController extends Controller
      *
      * @return void
      */
+
+     
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
     }
+
+
+    /**
+* Just for testing - the user should be logged in. In a real
+* app, please use standard authentication practices
+*/
+
 }

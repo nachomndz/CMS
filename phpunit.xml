@@ -22,15 +22,62 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
-    <php>
-        <server name="APP_ENV" value="testing"/>
+
+
+
+<php>
+     <server name="APP_ENV" value="testing"/>
+     <server name="BCRYPT_ROUNDS" value="4"/>
+     <server name="CACHE_DRIVER" value="array"/>
+     <server name="MAIL_DRIVER" value="array"/>
+     <server name="QUEUE_CONNECTION" value="sync"/>
+     <server name="SESSION_DRIVER" value="array"/>
+  
+   <!--<env name="DB_CONNECTION" value="mysql_tests"/>-->
+  <!-- <server name="DB_CONNECTION" value="mysql_tests"/> -->
+
+
+  <env name="DB_DATABASE" value="BD_for_testing"/>
+</php>
+
+
+  <!--<php>
+        <server name="APP_ENV" value="testing"/> 
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
         <server name="MAIL_DRIVER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
 
-        <server name="DB_DATABASE" value="BD_for_testing"/>
+       <server name="DB_CONNECTION" value="sqlite_testing"/> 
+   <server name="DB_CONNECTION" value="sqlite_testing"/> 
+   <env name="DB_CONNECTION" value ="sqlite_testing"/>
+   <env name="DB_CONNECTION" value ="sqlite_testing"/>
+
+
+  </php>-->
+
+<!--
+   <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_URL" value="http://localhost"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+
+        <env name="DB_DATABASE" value ="sqlite_testing"/>
+    </php>
+-->
+
+ <!-- <php>
+        <env name="APP_ENV" value="testing"/>
+        <env name="APP_URL" value="http://localhost"/>
+        <env name="CACHE_DRIVER" value="array"/>
+        <env name="SESSION_DRIVER" value="array"/>
+        <env name="QUEUE_DRIVER" value="sync"/>
+        <env name="DB_CONNECTION" value="sqlite_testing"/>
+           <server name="DB_CONNECTION" value="sqlite_testing"/> 
 
     </php>
+-->
 </phpunit>

@@ -200,7 +200,7 @@ use App\User; ?>
                                     // $role= $userb->roles[0]->name;
                                     $array_roles = $userb->roles->pluck('name');
 
-                                    if ($array_roles->contains('Admin') ) {
+                                    if ($array_roles->contains('Admin')) {
 
                                 ?>
 
@@ -225,33 +225,33 @@ use App\User; ?>
                                         </a>
 
 
-                                <?php
+                                    <?php
                                     }
 
 
-                                    if($array_roles->contains('Editor')){
-                                       ?>
+                                    if ($array_roles->contains('Editor') && $array_roles->contains('Editor') == false) {
+                                    ?>
 
-<a class="dropdown-item" href="{{ url('/newsEdit') }}" onclick="">
-                                        {{ __('Contenido directo') }}
-                                    </a>
-
-
-                                    <a class="dropdown-item" href="{{ url('/newsTag') }}" onclick="">
-                                        {{ __('Contenido por tag') }}
-                                    </a>
+                                        <a class="dropdown-item" href="{{ url('/newsEdit') }}" onclick="">
+                                            {{ __('Contenido directo') }}
+                                        </a>
 
 
+                                        <a class="dropdown-item" href="{{ url('/newsTag') }}" onclick="">
+                                            {{ __('Contenido por tag') }}
+                                        </a>
 
-                                    <a class="dropdown-item" href="{{ url('/tagsEditor') }}" onclick="">
-                                        {{ __('Crear/Borrar tags') }}
-                                    </a>
 
-                                    <?php
+
+                                        <a class="dropdown-item" href="{{ url('/tagsEditor') }}" onclick="">
+                                            {{ __('Crear/Borrar tags') }}
+                                        </a>
+
+                                <?php
                                     }
                                 }  ?>
 
-                                <a class="dropdown-item" href="{{ url('/noticias') }}" onclick="">
+                                <a class="dropdown-item" href="{{ url('/muestraNoticias') }}" onclick="">
                                     {{ __('Mis noticias') }}
                                 </a>
 
@@ -346,8 +346,8 @@ use App\User; ?>
                 <p class="TFG"></p>
                 <p class="titulotfg"><span> "Sistema de Gestión de Microcontenidos y Notificaciones Multipropósito y
                         Multiplataforma de Múltiples Proyectos Externos Independientes" </p></span>
-                    
-                      <!-- <p>© Copyright - Derechos reservados - 2020</p>-->
+
+                <!-- <p>© Copyright - Derechos reservados - 2020</p>-->
                 <nav class="navegacion">
                     <a href="https://twitter.com/nachomndzz"><i class="icon ion-social-twitter icono twitter"> </i></a>
 

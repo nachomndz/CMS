@@ -1,6 +1,16 @@
 <?php
 
 namespace App;
+/*
+use App\Notifications\CambiarPassword;
+use Illuminate\Auth\Authenticatable  as Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Illuminate\Foundation\Auth\Access\Authorizable;
+use jeremykenedy\LaravelRoles\Traits\HasRoleAndPermission;
+*/
+
 
 use App\Notifications\CambiarPassword;
 use Illuminate\Notifications\Notifiable;
@@ -10,14 +20,13 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 
 
-//use Illuminate\Auth\Authenticable as AuthenticableTrait;
 class User extends Authenticatable
 {
     use Notifiable;
     use HasRoleAndPermission;
     //use AuthenticableTrait;
-
- 
+  //  use Authenticatable;
+  
     /**
      * The attributes that are mass assignable.
      *

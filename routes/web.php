@@ -23,7 +23,7 @@ Route::get('/', function () {
 */
 
 //acceso restringido solo a usuarios logueados
-Route::get('noticias','showNewsController@index')->middleware('auth'); //,->name('noticias');
+Route::get('muestraNoticias','showNewsController@index')->middleware('auth'); //,->name('noticias');
 
 
 
@@ -54,7 +54,7 @@ Route::get('gestorUsuarios','gestorUsuariosController@index')->name('gestorUsuar
 
 
 
-Route::get('get-contenidos/{id}','User\UserController@getMisContenidos')->name('getMisContenidos');
+Route::get('get-contenidos/{isShow}','User\UserController@getMisContenidos')->name('getMisContenidos');
 
 
 Route::get('get-tags/{id}','User\UserController@mostrarTagsUsuario')->name('mostrarTagsUsuario');

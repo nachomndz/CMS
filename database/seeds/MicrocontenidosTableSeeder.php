@@ -21,8 +21,8 @@ class MicrocontenidosTableSeeder extends Seeder
             'tipo' => 'Ocio',
             'titulo' => 'Cena de empresa',
             'subtitulo' => 'Toda la plantilla de Alcorcón invitada',
-           
             'texto' =>'¡ Esperemos que sea una tranquila velada. Ideal para favorecer el teambuilding !',
+            'path' => 'public/cena-empresa.jpg',
             'autor' => 'Antonio Escohotado',
             'comienza' => '2020-05-11',
             'caduca' => '2020-05-12',
@@ -38,8 +38,8 @@ class MicrocontenidosTableSeeder extends Seeder
             'tipo' => 'Ocio',
             'titulo' => 'Sorteo 2 entradas final de champions ',
             'subtitulo' => 'Se sortearán entre toda la plantilla',
-           
             'texto' =>'Será un sorteo entre toda la plantilla mucha suerte a todos los miembros de la empresa',
+            'path' => 'public/entradas-futbol.jpg',
             'autor' => 'El CEO, Ramón',
             'comienza' => '2020-08-24',
             'caduca' => '2020-08-24',
@@ -56,7 +56,9 @@ class MicrocontenidosTableSeeder extends Seeder
             'titulo' => 'Reunión becarios ',
             'subtitulo' => 'Sala principal del edificio Oeste',
            
-            'texto' =>'Se darán todas las indicaciones a nuestros becarios para que sepan como proceder en días venidores',
+            'texto' =>'Se darán todas las indicaciones a nuestros becarios para que sepan como proceder en días venideros',
+            'path' => 'public/reunion-becarios.jpg',
+
             'autor' => 'La ejecutiva',
             'comienza' => '2020-08-28',
             'caduca' => '2020-08-28',
@@ -71,6 +73,8 @@ class MicrocontenidosTableSeeder extends Seeder
             'subtitulo' => 'Sortearemos las dificultades juntos',
            
             'texto' =>'Será necesario afrontar la crisis del coronavirus todos juntos, la cúpula dará ejemplo',
+            'path' => 'public/recortes.png',
+
             'autor' => 'La ejecutiva',
             'comienza' => '2020-08-29',
             'caduca' => '2020-08-29',
@@ -81,9 +85,10 @@ class MicrocontenidosTableSeeder extends Seeder
             
             'tipo' => 'Trabajo',
             'titulo' => 'Ayuda al Servicio de limpieza',
-            'subtitulo' => 'Varias quejas de empleadas de la limpieza han sido recibidas',
-           
+            'subtitulo' => 'Varias quejas de empleadas de la limpieza han sido recibidas', 
             'texto' =>'Se ruega más limpiez por parte de los trabajadores del Sector D',
+            'path' => 'public/servicio-limpieza.jpg',
+
             'autor' => 'Jefe de mantenimiento',
             'comienza' => '2020-08-30',
             'caduca' => '2020-08-30',
@@ -99,6 +104,8 @@ class MicrocontenidosTableSeeder extends Seeder
             'subtitulo' => 'Será arreglada próximamente',
            
             'texto' =>'Las caídas continuadas de la red serán arregladas en los próximos días se ruega paciencia a todos los trabajadores',
+            'path' => 'public/reparacion.jpg',
+
             'autor' => 'CTO',
             'comienza' => '2020-08-30',
             'caduca' => '2020-08-30',

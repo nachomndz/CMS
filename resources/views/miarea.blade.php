@@ -54,7 +54,7 @@ use Illuminate\Support\Facades\Auth;
                             <label for="nombre" class="col-md-4 col-form-label text-md-right">{{ __('Nombre:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nombre" type="text"  name="name" value="<?php echo $resultado['name']; ?>"  autofocus>
+                                <input id="nombre" type="text"  name="name" value="<?php echo $resultado['name']; ?>"  autofocus disabled>
 
                                <!-- <input type="text" class="loquesea" value=" <//?php echo $resultado['nombre']; ?>"> -->
 
@@ -66,7 +66,7 @@ use Illuminate\Support\Facades\Auth;
                             <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="<?php echo $resultado['email']; ?>" ><!--value="{{ old('email') }}" >-->
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="<?php echo $resultado['email']; ?>" disabled><!--value="{{ old('email') }}" >-->
 
                         </div></div>
 
@@ -74,7 +74,7 @@ use Illuminate\Support\Facades\Auth;
                             <label for="telefono" class="col-md-4 col-form-label text-md-right">{{ __('Teléfono:') }}</label>
 
                             <div class="col-md-6">
-                                <input id="telefono" type="telefono"  name="telefono" value="<?php echo $resultado['telefono']; ?>"  >
+                                <input id="telefono" type="telefono"  name="telefono" value="<?php echo $resultado['telefono']; ?>"  disabled>
 
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -123,10 +123,10 @@ use Illuminate\Support\Facades\Auth;
   
                         <label for="tustags" class=" col-form-label text-md-right"  ><?php 
                         
-                        for($i=0; $i<count($tags_del_usuario); $i++){
+                        //for($i=0; $i<count($tags_del_usuario); $i++){
 
                         
-                        echo $tags_del_usuario[$i]; }
+                        echo implode ( $tags_del_usuario , ', ');// +","; }
                         
                         ?> </label>
 

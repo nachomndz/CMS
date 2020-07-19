@@ -24,7 +24,7 @@ class UserController extends Controller
     public function index()
     {
         //
-        $users= User::all();
+        $users = User::all();
         return $users;
     }
 
@@ -46,7 +46,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 
         $validatedData = $request->validate([
             'name' => 'required|max:255',
@@ -57,36 +57,36 @@ class UserController extends Controller
         ]);
 
 
-           $user = new User;   
+        $user = new User;
 
-            $user->name = $request->name;
-            $user->email = $request->email;
-            $user->password = FacadesHash::make($request->password);
-            $user->telefono = $request->telefono;
-            $user->perfil_id = $request->perfil_id;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = FacadesHash::make($request->password);
+        $user->telefono = $request->telefono;
+        $user->perfil_id = $request->perfil_id;
 
-            $user->save();
-
-
-
-
-            //Asignar al usuario creado tag's
-          //  $user->temas = $request->temas;
-
-
-            return response()->json($user, 201);
+        $user->save();
 
 
 
-            //
 
-     /*   $rules = [
+        //Asignar al usuario creado tag's
+        //  $user->temas = $request->temas;
+
+
+        return response()->json($user, 201);
+
+
+
+        //
+
+        /*   $rules = [
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
             'telefono' => 'required',
             'perfil_id' => 'required',        ];*/
-/*
+        /*
             $this->validate($request,$rules);
 
             $user = User::create();
@@ -95,7 +95,7 @@ class UserController extends Controller
 
 
 
-          /*  if (!$request->input('name') || !$request->input('email') || !$request->input('password') 
+        /*  if (!$request->input('name') || !$request->input('email') || !$request->input('password') 
             || !$request->input('telefono') || !$request->input('perfil_id')   ){
 
                 
@@ -110,7 +110,7 @@ class UserController extends Controller
             $user=User::create($request->all());
 
 */
-		//return 200;
+        //return 200;
     }
 
     /**
@@ -121,13 +121,13 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        
-
-      // return User::getMisContenidos($id);
 
 
-      return User::findOrFail($id);
-       //return User::where('id', $id)->get();
+        // return User::getMisContenidos($id);
+
+
+        return User::findOrFail($id);
+        //return User::where('id', $id)->get();
     }
 
     /**
@@ -162,15 +162,15 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
-       // return $id;
+        // return $id;
 
-      // User::deleted($id);
-      User::find($id)->delete();
-      //User::destroy($id);
+        // User::deleted($id);
+        User::find($id)->delete();
+        //User::destroy($id);
 
-      //return redirect()
+        //return redirect()
 
-     
+
 
     }
 
@@ -179,14 +179,14 @@ class UserController extends Controller
     public static function obtenerTodos()
     {
         //
-        $users= User::get();
+        $users = User::get();
         return $users;
     }
 
 
 
 
-    
+
     public function obtenerIdDadoEmail(Request $request)
     {
         //
@@ -194,26 +194,26 @@ class UserController extends Controller
 
         //$user= User::find($id);
         //$user=User::all()->whereStrict('email', $email)->id;
-       
+
 
         //echo $email;
         return User::findOrFail($request->id);
-      /* $user=User::all()->whereStrict('email', $email);
+        /* $user=User::all()->whereStrict('email', $email);
         
 
         return $user;*/
     }
 
 
-//probando en tinker
+    //probando en tinker
     public static function obtenerTodosEmails($email)
     {
         //
-       /* $users= User::get()->email;
+        /* $users= User::get()->email;
         return $users;*/
-        $user=User::get()->where('email', $email);
-       
-        
+        $user = User::get()->where('email', $email);
+
+
 
         return $user;
     }
@@ -221,143 +221,106 @@ class UserController extends Controller
 
     public static function informacionPorId($id)
     {
-        
 
-      // return User::getMisContenidos($id);
-
-
-      return User::findOrFail($id);
-       //return User::where('id', $id)->get();
+        return User::findOrFail($id);
     }
 
+    /* Obtiene contenidos del usuario que estén visibles*/
+    public static function getMisContenidos($isShow)
+    {
 
-    /*public static function misContenidos($id){
-        return User::getMisContenidos($id);
-    }*/
+        $id= Auth::user()->id;
 
-
-/* Obtiene contenidos del usuario que estén visibles*/ 
-    public static function getMisContenidos($id){
-       
-  
-  /* $users = User::with('microcontenidos')
-   ->where('id',$id)
-   ->get();
-
-$users = $users->get(0)->microcontenidos;
-$users=$users
-    ->filter(function($val)use($id){
-    return $val->filter(function($v,$k)use($id){
-        if($v->pivot->user_id==$id && $v->pivot->visible==1){
-            return true;
-        };
-    });
-   });
-
-return $users;*/
-
-
-$user=User::with('microcontenidos')->where('id',$id)->get()
-->map(function($val, $key)use($id){
-    return $val->microcontenidos->
-    filter(function($v,$k)use($id){
-        return $v->pivot->user_id==$id && $v->pivot->visible==1;});});
-
-return $user;
-
-}
-
-    
-
-
-
-
-    public static function obtenerIdsPorPerfil($puesto){
+        $contenidos = User::with('microcontenidos')->where('id', $id)->get();
+        $contents=$contenidos->get(0)
+        ->microcontenidos
+        ->filter(function($v, $k)use($isShow){
+            return $v->pivot->visible == $isShow;
+        })->values();
         
+        return $contents;
+    }
+
+    public static function obtenerIdsPorPerfil($puesto)
+    {
+
         //id del puesto dado 
-        $id_perfil=Perfil::where('puesto', $puesto)->first()->id;       
-     //return $id_perfil;
+        $id_perfil = Perfil::where('puesto', $puesto)->first()->id;
+        //return $id_perfil;
         $user = User::where('perfil_id', $id_perfil)->get()->pluck('id');
 
-      //retorna usuarios que tienen el puesto pasado por parámetro
+        //retorna usuarios que tienen el puesto pasado por parámetro
         return $user;
     }
 
 
-    public static function obtenerPuestoPorId($id){
+    public static function obtenerPuestoPorId($id)
+    {
 
         User::with('perfiles');
     }
 
+    public static function obtenerIdsPorTag($id_tag)
+    {
 
 
-    public static function obtenerIdsPorTag($id_tag){
-       
-       /* $user = array_get(User::with('Tags')
-        ->whereHas('Tags', function($query)use($id_tag){
-            $query->where('tag_id',$id_tag);
-        })->get(),0);
+        return User::with('Tags')
+            ->whereHas('Tags', function ($query) use ($id_tag) {
+                $query->where('tag_id', $id_tag);
+            })->get();
 
-*/
-
-return User::with('Tags')
-        ->whereHas('Tags', function($query)use($id_tag){
-            $query->where('tag_id',$id_tag);
-        })->get();
-
-       // return $user;
+        // return $user;
         //return $user->id;
     }
 
 
 
 
-public static function asignarNoticiasPorTag(User $user){
+    public static function asignarNoticiasPorTag(User $user)
+    {
 
-    $tags= $user->tags->name;
-}
+        $tags = $user->tags->name;
+    }
 
 
 
-public static function allUsers()
+    public static function allUsers()
     {
         //
-        $users= User::all();
+        $users = User::all();
         return $users;
     }
 
 
-    public static function mostrarTagsUsuario($id){
-       
-
-       
-      
-
-
-        $array_ids_de_tag=User::with('Tags')->find($id)->tags->pluck('id');
+    public static function mostrarTagsUsuario($id)
+    {
 
 
 
 
-       $collection= new Collection();
-        foreach($array_ids_de_tag as $indice){
-
-           $collection->push(Tag::find($indice));
 
 
+        $array_ids_de_tag = User::with('Tags')->find($id)->tags->pluck('id');
+
+
+
+
+        $collection = new Collection();
+        foreach ($array_ids_de_tag as $indice) {
+
+            $collection->push(Tag::find($indice));
         }
 
 
-        $array=[];
+        $array = [];
 
-       
-        foreach($collection as $tag){
 
-           // return $tag->name;
-            array_push($array,$tag->name);
+        foreach ($collection as $tag) {
 
+            // return $tag->name;
+            array_push($array, $tag->name);
         }
-        
+
 
         return $array;
     }

@@ -17,10 +17,18 @@ footer{
 }
   
   </style>
+
 @section('content')
+
+
+
 
 <script>
   function borrarUsuario(id) {
+
+
+
+
 
     if (window.confirm("¿Estás seguro de borrar este usuario?")) {
 
@@ -114,7 +122,7 @@ $usuarios = App\User::with('perfil')->get();
 
     <td> {{$user->perfil->puesto}}</td>
 
-    <td> <button type="button" onclick="borrarUsuario({{$user->id}})"> <img src="/assets/icons-main/icons/trash-fill.svg" /> </button>
+    <td> <button type="button" id="botonValor" onclick="borrarUsuario({{$user->id}})" value="{{$user->id}}"> <img src="/assets/icons-main/icons/trash-fill.svg" /> </button>
       <button type="button" onclick="mostrarTagsUsuario({{$user->id}})"> <img src="/assets/icons-main/icons/eye-fill.svg" /> </button>
 
     </td>

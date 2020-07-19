@@ -19,7 +19,7 @@ class showNewsController extends Controller
 
     public function index()
     {
-        return view('shownews');
+        return view('muestraNoticias');
     }
 
 }

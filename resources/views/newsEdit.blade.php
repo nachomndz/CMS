@@ -20,14 +20,21 @@ div.hola{
 </style>
 
 <script>
-    var j = jQuery.noConflict();
+
+    
+   var j = jQuery.noConflict();
     j(function() {
         j("#datepicker").datepicker();
         j("#format").on("change", function() {
             j("#datepicker").datepicker("option", "dateFormat", j(this).val());
         });
     });
-
+    /*var j = jQuery.noConflict();
+    j(function() {
+    j("#datepicker").datepicker({
+    format: 'dd-mm-yy'
+});});
+*/
     var h = jQuery.noConflict();
     h(function() {
         h("#datepicker1").datepicker();
@@ -268,7 +275,80 @@ $(document).ready(function() {
 
 
 
+<script>
+ function cambiarFormato() {
+/*var inputFecha= document.getElementById("datepicker");
+    
+console.log(inputFecha.value)*/
 
+/*
+var x = $(datepicker).val();
+alert(x.toISOString())*/
+
+
+ //alert(x);
+
+
+ //alert(x.toISOString());
+
+ var x = $("#datepicker").val();
+
+ fecha_en_ISO=new Date(x).toISOString();
+
+
+ //console.log(fecha_en_ISO);
+ 
+ //$("#datepicker").value=fecha_en_ISO;
+
+ //console.log($("#datepicker").val());
+/*
+ $fecha_definitiva= moment($("#datepicker").val()).format();
+
+ console.log($fecha_definitiva); */
+ /*$("#datepicker").value=$( "#datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+
+
+
+ $(function () {
+        $('#datepicker').datepicker({
+            dateFormat: 'dd-mm-yy'
+        });
+        $("#datepicker").datepicker().datepicker("setDate", new Date());
+    });
+
+*/
+ /*
+ $(function() {
+$("#datepicker").datepicker({ dateFormat: 'yy-mm-dd' });
+
+});*/
+ //document.getElementById("#datapicker").value= new Date(x).toISOString();
+
+ //console.log(selectedDate = moment(x,"MM-DD-YYYY"));
+
+
+/*
+var j = jQuery.noConflict();
+    j(function() {
+        j("#datepicker").datepicker();
+        j("#format").on("change", function() {
+            j("#datepicker").datepicker("option", "dateFormat", j(this).val());
+        });
+    });*/
+
+/*
+    $('#datepicker').on("dp.change",function(e){
+        var selectedDate = $('#datepicker').find("input").val();
+        selectedDate = moment(selectedDate,"MM-DD-YYYY");
+        $(".temp").text(selectedDate.toISOString());
+    });
+*/
+
+
+    //document.getElementById("#datapicker").value
+
+ }
+</script>
 
 
                                     <div class="form-group row">
@@ -282,7 +362,7 @@ $(document).ready(function() {
                                     <div class="form-group row">
                                         <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Comienza:') }}</label>
                                         <div class="col-md-6">
-                                            <input type="text" name="comienza" id="datepicker">
+                                            <input type="text" name="comienza" id="datepicker" onchange ="cambiarFormato()">
                                         </div>
 
                                     </div>
@@ -294,11 +374,15 @@ $(document).ready(function() {
                                         </div>
                                     </div>
 
+
+                            
+<!--
+
                                     <div class="form-group row">
                                         <label for="formato" class="col-md-4 col-form-label text-md-right">{{ __('Opciones de Formato(Escoge ISO):') }}</label>
 
                                         <div class="col-md-6">
-                                            <select id="format">
+                                            <select id="format" name='formato'>
                                                 <option value="mm/dd/yy">Default - mm/dd/yy</option>
                                                 <option value="yy-mm-dd">ISO 8601 - yy-mm-dd</option>
                                                 <option value="d M, y">Short - d M, y</option>
@@ -308,8 +392,8 @@ $(document).ready(function() {
                                             </select>
                                             </p>
                                         </div>
-                                    </div>
-
+                                    </div>-->
+        
                                    <!--   <div class="form-group row">
                                             <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Perfiles Destinatarios:</label>
 
@@ -326,7 +410,7 @@ $(document).ready(function() {
                                         <div class="form-group row mb-0">
                                             <div class="col-md-6 offset-md-4">
 
-                                                <button type="submit" class="btn btn-primary">
+                                                <button type="submit" class="btn btn-primary" name="crear">
                                                     {{ __('Crear') }}
 
                                                 </button>
