@@ -63,6 +63,8 @@ class pruebas_a_la_BD extends DuskTestCase
 
 
 /** @test */
+
+/*
     public function testusuario_administrador_introduce_newsEdit(){
 
        
@@ -96,7 +98,7 @@ class pruebas_a_la_BD extends DuskTestCase
         'caduca' => '2020-07-19 17:31:55'
     
     ]);*/
-    
+    /*
     $browser->assertDatabaseHas('microcontenidos',[
         'texto' => 'Prueba Texto'
     ]);
@@ -106,4 +108,41 @@ class pruebas_a_la_BD extends DuskTestCase
 
 
 }
+*/
+
+
+public function test_crea_una_completando_formulario()
+{
+
+  // $crea=Formularios_A_BD_test::usuarioEditor();
+   
+  // $this->withoutExceptionHandling();
+
+   $user=ExampleTest::usuarioEditor();
+
+   $this->browse(function ($browser) use ($user) {
+    $browser->actingAs($user)->visit('/almacenaPorTag')
+   ->select('Economía','tipo')
+   ->type('La empresa se acoge a un ERTE', 'titulo' )
+   ->type('es una desgracia para todos', 'subtitulo')
+   ->type('Esperemos recuperarnos y salir reforzados','texto')
+   ->type('Robin Sharma','autor')
+   ->select('Coronavirus','multiselect[]')
+   ->type('07/01/2020','comienza')
+   ->type('07/01/2020','caduca')
+
+   ->press('submitNoticia');
+   });
+   
+    //comprobamos que existe una noticia con ese titulo y subtitulo
+    $this->assertDatabaseHas('microcontenidos',[
+        'titulo' => 'La empresa se acoge a un ERTE',
+        'subtitulo' => 'es una desgracia para todos'
+        
+    ]);
+
+    }
+
+
+
 }

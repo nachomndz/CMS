@@ -18,6 +18,8 @@
         border: 1px solid #e1e1e1;
         transition: all .3s ease;
         margin-bottom: 65px;
+        min-height: 240px;
+        min-width: 500px;
     }
 
     @media only screen and (min-width:768px) {
@@ -137,7 +139,7 @@
 
         function dibujarCard(objeto) {
 
-            if (objeto.path != null) {
+            /*if (objeto.path != null) {
               hola = objeto.path.slice(7, objeto.path.length);
       
       
@@ -148,6 +150,7 @@
       
           }
 
+        */
 
          //   let btn_show = `<a href="#" class="btn btn-primary " onclick="mostrarNoticia(${objeto.id})"  >Mostrar</a>`
           //  let btn_hidden = `<a href="#" class="btn btn-light " onclick="ocultarNoticia(${objeto.id})"    >Ocultar</a>`
@@ -159,8 +162,11 @@
 
             let button = (objeto.pivot.visible) ? btn_hidden : btn_show;
 
-
-           let fecha_recortada=objeto.comienza.substr(0,10);
+            let noExiste= `no hay foto`
+            let imagen=(objeto.path==null) ? noExiste : objeto.path.slice(7, objeto.path.length);
+          
+          
+            let fecha_recortada=objeto.comienza.substr(0,10);
            console.log(fecha_recortada);
             let card = ` 
         
@@ -168,8 +174,8 @@
 
             <div class="noticia">  
       
+            <center><img class="imagen" src="storage/${imagen}" alt="foto"  height="200">  </center>
       
-      <center><img class="imagen" src="storage/${path}" alt="foto"  height="200">  </center>
         <div class="titulo">Título: ${objeto.titulo} </div> </br> 
       
       <!-- <p class="leermas"> <a href="#" id="mas" onclick="vermas('mas')">leer más</a> </p> -->

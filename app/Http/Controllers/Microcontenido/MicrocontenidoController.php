@@ -271,6 +271,8 @@ class MicrocontenidoController extends Controller
 
         ]);
 
+
+        
         $microcontenidos = new Microcontenido();
         $microcontenidos->tipo = $request->tipo;
         $microcontenidos->titulo = $request->titulo;
@@ -325,7 +327,7 @@ class MicrocontenidoController extends Controller
 
             $microcontenidos->users()->attach($lista_de_ids_users[$i], ['opciones' => 'tag', 'visible' => 1]);
         }
-        metodosController::redirect_now('/newsTag');
+       metodosController::redirect_now('/newsTag');
         return response()->json($microcontenidos, 201);
     }
 
@@ -340,6 +342,9 @@ class MicrocontenidoController extends Controller
         $user->microcontenidos()->updateExistingPivot($request->id, ['visible' => '0']);
     }
 
+
+
+   
 
 
     public function mostrarNoticia(Request $request)
@@ -366,5 +371,17 @@ class MicrocontenidoController extends Controller
 
 
         return $result;
+    }
+
+
+
+    public function ocultarNew($id ,$user)
+    {
+
+
+
+        //$user = User::find(Auth::user()->id);
+
+        $user->microcontenidos()->updateExistingPivot($id, ['visible' => '0']);
     }
 }

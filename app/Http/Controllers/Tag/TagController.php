@@ -56,7 +56,7 @@ class TagController extends Controller
 
 
 
-        metodosController::redirect_now('/tagsEditor');
+       metodosController::redirect_now('/tagsEditor');
         return response()->json($tag, 201);
 
     }
@@ -95,6 +95,8 @@ class TagController extends Controller
     public function update(Request $request, $id)
     {
         //
+
+    
     }
 
     /**

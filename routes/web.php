@@ -79,6 +79,12 @@ Route::post('microcontenido', 'Microcontenido\MicrocontenidoController@store')->
 
 Route::post('ocultar-noticia', 'Microcontenido\MicrocontenidoController@ocultarNoticia')->name('ocultarNoticia');
 
+Route::get('ocultarNew/{id}/{user}', [
+    'as' => 'ocultarNew',
+    'uses' => 'Microcontenido@ocultarNew',
+]);
+
+
 Route::post('mostrar-noticia', 'Microcontenido\MicrocontenidoController@mostrarNoticia')->name('mostrarNoticia');
 
 
@@ -92,3 +98,6 @@ Route::post('guardarTag','Tag\TagController@store')->name('guardarTag');
 
 
 Route::post('borrarTag','Tag\TagController@borrarTag')->name('borrarTag');
+
+
+Route::resource('tag', 'Tag\TagController');

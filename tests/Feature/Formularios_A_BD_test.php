@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use App\Microcontenido;
 use App\User;
 use Illuminate\Foundation\Auth\User as AuthUser;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -36,15 +37,69 @@ class Formularios_A_BD_test extends TestCase
           
         ]);
     
+
+        DB::table('tags')->insert([
+            'id' => '1',
+            'name' => 'Futuros proyectos',
+          
+        ]);
+
+        DB::table('tags')->insert([
+            'id' => '2',
+            'name' => 'Coronavirus',
+          
+        ]);
     
     $user=factory(User::class)->create([
-  
+    'id'=>1,
     'perfil_id'=>'8',
     
     ]);
+
+    User::find(1)->tags()->attach(1);
+    
+    
     return $user;
 
     
+
+    }
+
+
+    public static function creacionContenidoyUser(){
+
+
+        DB::table('microcontenidos')->insert([
+            'id' => '1',
+            'tipo' => 'Trabajo',
+            'titulo' => 'Ayuda al Servicio de limpieza',
+            'subtitulo' => 'Varias quejas de empleadas de la limpieza han sido recibidas', 
+            'texto' =>'Se ruega más limpiez por parte de los trabajadores del Sector D',
+            'path' => 'public/servicio-limpieza.jpg',
+
+            'autor' => 'Jefe de mantenimiento',
+            'comienza' => '2020-08-30',
+            'caduca' => '2020-08-30',
+
+            
+        ]);
+
+        DB::table('perfiles')->insert([
+            'id' => 8,
+            'puesto' => 'Becario',
+          
+        ]);
+        $user=factory(User::class)->create([
+            'id'=>1,
+            'perfil_id'=>'8',
+            
+            ]);
+
+
+
+            Microcontenido::find(1)->users()->attach(1);
+
+            return $user;
 
     }
 
@@ -103,6 +158,173 @@ $this->assertDatabaseHas('users', [
 }
 */
   
+
+/** @test */
+public function registro_crea_a_usuario()
+{
+
+   $crea=Formularios_A_BD_test::usuarioEditor();
+   $this->withoutExceptionHandling();
+    $this->post('api/users', [
+        'name' => 'Osvaldo',
+        'email' => 'osvaldo@gmail.com',
+        'password' => 'passdeprueba',
+        'telefono' => '640065252',
+        'perfil_id' => '8',
+
+    ]);
+
+    $this->assertDatabaseHas('users',[
+        'name'=> 'Osvaldo',
+        'email'=> 'osvaldo@gmail.com',
+    ]);
+
+    }
+
+
+    /** @test */
+/*public function crea_un_Tag()
+{
+
+  
+    $this->post('/guardarTag', [
+        'name' => 'Off-topic',
+      
+
+    ]);
+
+    $this->assertDatabaseHas('tags',[
+        'name'=> 'Off-topic',
+        
+    ]);
+
+    }*/
+
+
+        /** @test */
+public function borrar_un_Tag()
+{
+
+
+    DB::table('tags')->insert([
+        'id' => '1',
+        'name' => 'Futuros proyectos',
+      
+    ]);
+  
+    $this->delete('tag/1');
+
+    $this->assertDatabaseMissing('tags',[
+        'name'=> 'Futuros Proyectos',
+        
+    ]);
+
+    }
+
+
+    public function test_ver_tags_de_usuario()
+{
+
+
+    $crea=Formularios_A_BD_test::usuarioEditor();
+
+  
+    $response= $this->get('get-tags/1');
+
+    $response->assertStatus(200);
+
+    }
+
+
+
+    public function test_ocultación_de_microcontenido()
+    {
+    
+    
+        $creaUseryMicrocontenido=Formularios_A_BD_test::creacionContenidoyUser();
+    
+        //$user_id=$creaUseryMicrocontenido->id;
+
+        $response= $this->get('ocultarNew/1/1');
+    
+        $response->assertStatus(200);
+    
+        }
+    
+    
+
+
+
+    /** @test */
+    /*
+    public function crea_una_noticia()
+    {
+    
+      // $crea=Formularios_A_BD_test::usuarioEditor();
+       
+       $this->withoutExceptionHandling();
+        
+       
+       $this->post('almacenaPorTag', [
+            'tipo' => 'Economía',
+            'titulo' => 'La empresa se acoge a un ERTE',
+            'subtitulo' => 'es una desgracia para todos',
+            'texto' => 'Esperemos recuperarnos y salir reforzados',
+            'autor' => 'Robin Sharma',
+            'comienza' => '07/01/2020',
+            'caduca' => '07/01/2020'
+          
+    
+        ]);
+    
+        //comprobamos que existe una noticia con ese titulo y subtitulo
+        $this->assertDatabaseHas('microcontenidos',[
+            'titulo' => 'La empresa se acoge a un ERTE',
+            'subtitulo' => 'es una desgracia para todos'
+            
+        ]);
+    
+
+      
+
+        }
+*/
+
+ /** @test */
+    
+  /*  public function crea_una_completando_formulario()
+    {
+    
+      // $crea=Formularios_A_BD_test::usuarioEditor();
+       
+       $this->withoutExceptionHandling();
+
+       $user=Formularios_A_BD_test::usuarioEditor();
+       $this->actingAs($user)->visit('/almacenaPorTag')
+       ->select('Economía','tipo')
+       ->type('La empresa se acoge a un ERTE', 'titulo' )
+       ->type('es una desgracia para todos', 'subtitulo')
+       ->type('Esperemos recuperarnos y salir reforzados','texto')
+       ->type('Robin Sharma','autor')
+       ->select('Coronavirus','multiselect[]')
+       ->type('07/01/2020','comienza')
+       ->type('07/01/2020','caduca')
+
+       ->press('submitNoticia');
+
+       
+        //comprobamos que existe una noticia con ese titulo y subtitulo
+        $this->assertDatabaseHas('microcontenidos',[
+            'titulo' => 'La empresa se acoge a un ERTE',
+            'subtitulo' => 'es una desgracia para todos'
+            
+        ]);
+    
+
+      
+
+        }
+*/
 
 
 /** @test */
@@ -197,8 +419,7 @@ public function envia_microcontenidos_a_la_BD(){
     }
 */
 
-
-
+/*
 public function usuario_administrador_introduce_newsEdit(){
 
     $user= Formularios_A_BD_test::usuarioEditor();
@@ -215,7 +436,7 @@ public function usuario_administrador_introduce_newsEdit(){
     ->type('autor' , 'Autorprueba')
     ->type('comienza' ,'2020-07-16 17:31:55')
     ->type('caduca' , '2020-07-19 17:31:55')
-    ->press('crear');
+    ->press('crear');*/
 
 /*
     $this->visit('register')
@@ -229,12 +450,12 @@ public function usuario_administrador_introduce_newsEdit(){
     'caduca' => '2020-07-19 17:31:55'
 
 ]);*/
-
+/*
 $this->assertDatabaseHas('microcontenidos',[
     'texto' => 'Prueba Texto'
 ]);
     
-}
+}*/
 
 
 

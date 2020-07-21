@@ -70,47 +70,15 @@ class UserController extends Controller
 
 
 
-        //Asignar al usuario creado tag's
-        //  $user->temas = $request->temas;
-
+       
 
         return response()->json($user, 201);
 
 
 
-        //
-
-        /*   $rules = [
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-            'telefono' => 'required',
-            'perfil_id' => 'required',        ];*/
-        /*
-            $this->validate($request,$rules);
-
-            $user = User::create();
-
-            return $this->showOne($user,201);*/
-
-
-
-        /*  if (!$request->input('name') || !$request->input('email') || !$request->input('password') 
-            || !$request->input('telefono') || !$request->input('perfil_id')   ){
-
-                
-                    // Se devuelve un array errors con los errores encontrados y cabecera HTTP 422 Unprocessable Entity – [Entidad improcesable] Utilizada para errores de validación.
-                    // En code podríamos indicar un código de error personalizado de nuestra aplicación si lo deseamos.
-                    return response()->json(['errors'=>array(['code'=>422,'message'=>'Faltan datos necesarios para el proceso de alta.'])],422);
-                
-        
-            }
-
-
-            $user=User::create($request->all());
-
-*/
-        //return 200;
+ 
+//return 'Procesando...';
+    
     }
 
     /**

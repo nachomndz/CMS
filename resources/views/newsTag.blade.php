@@ -93,7 +93,7 @@
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Titulo:') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="titulo" type="text" class="form-control @error('name') is-invalid @enderror" name="titulo" value="{{ old('name') }}" required autocomplete="titulo" autofocus> @error('name')
+                                        <input id="titulo" type="text" class="form-control @error('name') is-invalid @enderror" dusk="dtitulo" name="titulo" value="{{ old('name') }}" required autocomplete="titulo" autofocus> @error('name')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span> @enderror
@@ -104,7 +104,7 @@
                                     <label for="" class="col-md-4 col-form-label text-md-right">{{ __('Subtítulo:') }}</label>
 
                                     <div class="col-md-6">
-                                        <input id="subtitulo" type="text" name="subtitulo" required autocomplete="subtitulo"> @error('email')
+                                        <input id="subtitulo" type="text" name="subtitulo" dusk="dsubtitulo"required autocomplete="subtitulo"> @error('email')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span> @enderror
@@ -114,7 +114,7 @@
                                 <div class="form-group row ">
                                     <label for="texto" class="col-md-4 col-form-label text-md-right">Texto:</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" id="texto" name="texto" rows="3"></textarea>
+                                        <textarea class="form-control" id="texto" name="texto" dusk="dtexto" rows="3" required autocomplete="texto"></textarea>
                                     </div>
 
                                 </div>
@@ -127,7 +127,7 @@
                                     <div class="col-md-6">
 
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="customFile" name="image">
+                                            <input type="file" class="custom-file-input" id="customFile" name="image" dusk="dfile">
                                             <label class="custom-file-label" for="customFile">Choose file</label>
 
                                         </div>
@@ -145,7 +145,7 @@
                                     <label for="exampleFormControlSelect1" class="col-md-4 col-form-label text-md-right">Escoge la categoría de la noticia:</label>
 
                                     <div class="col-md-6">
-                                        <select class="form-control " id="tipo" name="tipo">
+                                        <select class="form-control " id="tipo" name="tipo" dusk="tipo">
                                             <option>Economía</option>
                                             <option>Empresa</option>
                                             <option>Reunión</option>
@@ -208,7 +208,7 @@
                                     <label for="temas" class="col-md-4 col-form-label text-md-right">{{ __('Selecciona tags') }}</label>
 
                                     <div class="col-md-6">
-                                        <select id="example-getting-started" name="multiselect[]" multiple="multiple" required="">
+                                        <select id="example-getting-started" name="multiselect[]" multiple="multiple" dusk="dmultiple" required="">
                                             @foreach ($Tags as $tag)
                                             <option value="{{$tag->id}}">{{$tag->name}}</option>
                                             @endforeach
@@ -220,7 +220,7 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Autor:') }}</label>
                                     <div class="col-md-6">
-                                        <input id="autor" type="text" name="autor" autofocus>
+                                        <input id="autor" type="text" name="autor" dusk="dautor" autofocus>
 
                                     </div>
                                 </div>
@@ -228,7 +228,7 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Comienza:') }}</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="comienza" id="datepicker">
+                                        <input type="text" name="comienza" id="datepicker" dusk="dcomienza">
                                     </div>
 
                                 </div>
@@ -236,11 +236,11 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Caduca:') }}</label>
                                     <div class="col-md-6">
-                                        <input type="text" name="caduca" id="datepicker1">
+                                        <input type="text" name="caduca" id="datepicker1" dusk="dcaduca">
                                     </div>
                                 </div>
 
-                                <div class="form-group row">
+                     <!--           <div class="form-group row">
                                     <label for="formato" class="col-md-4 col-form-label text-md-right">{{ __('Opciones de Formato(Escoge ISO):') }}</label>
 
                                     <div class="col-md-6">
@@ -256,13 +256,13 @@
                                     </div>
                                 </div>
 
-                                
+                                -->
 
 
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
 
-                                        <button type="submit" class="btn btn-primary">
+                                        <button type="submit" class="btn btn-primary" dusk="dsubmit">
                                             {{ __('Crear') }}
 
                                         </button>

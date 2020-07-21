@@ -127,7 +127,7 @@ div.hola{
                                 <div class="form-group row ">
                                     <label for="texto" class="col-md-4 col-form-label text-md-right">Texto:</label>
                                     <div class="col-md-6">
-                                        <textarea class="form-control" id="texto" name="texto" rows="3"></textarea>
+                                        <textarea class="form-control" id="texto" name="texto" rows="3" required autocomplete="texto"></textarea>
                                     </div>
 
                                 </div>
