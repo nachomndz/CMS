@@ -12,6 +12,7 @@ class TagsTableSeeder extends Seeder
     public function run()
     {
         //
+        
         DB::table('tags')->insert([
             'id' => 1,
             'name' => 'Reuniones Informativas',
@@ -89,6 +90,66 @@ class TagsTableSeeder extends Seeder
         ]);
 
 
+
+
+/*
+DB::table('tags')->insert([
+    'id' => 1,
+    'name' => 'Reunion Pre-partido',
+  
+]);
+
+
+DB::table('tags')->insert([
+    'id' => 2,
+    'name' => 'Entrenamiento',
+  
+]);
+
+
+DB::table('tags')->insert([
+    'id' => 3,
+    'name' => 'Fichajes',
+  
+]);
+
+
+DB::table('tags')->insert([
+    'id' => 4,
+    'name' => 'Jornadas',
+  
+]);
+
+DB::table('tags')->insert([
+    'id' => 5,
+    'name' => 'Prensa',
+  
+]);
+
+
+DB::table('tags')->insert([
+    'id' => 6,
+    'name' => 'Networking',
+  
+]);
+
+
+
+DB::table('tags')->insert([
+    'id' => 7,
+    'name' => 'Coronavirus',
+  
+]);
+
+
+
+DB::table('tags')->insert([
+    'id' => 8,
+    'name' => 'Infraestructura de red',
+  
+]);
+
+*/
 
     }
 }

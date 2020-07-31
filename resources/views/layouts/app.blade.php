@@ -229,7 +229,7 @@ use App\User; ?>
                                     }
 
 
-                                    if ($array_roles->contains('Editor') && $array_roles->contains('Editor') == false) {
+                                    if ($array_roles->contains('Editor') && $array_roles->contains('Admin') == false) {
                                     ?>
 
                                         <a class="dropdown-item" href="{{ url('/newsEdit') }}" onclick="">

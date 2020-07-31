@@ -215,43 +215,9 @@ class MicrocontenidoController extends Controller
 
 
 
-/*
-
-    public function almacena(Request $request)
-    {
-         $validatedData = $request->validate([
-            'tipo' => 'required|max:255',
-
-
-            'titulo' => 'required|max:255',
-            'subtitulo' => 'required|max:255',
-            'texto' => 'required|max:255',
-            'autor' => 'required|max:255',
-            'comienza' => 'required|date',
-            'caduca' => 'required|date',
-
-        ]);
 
 
 
-        $microcontenidos = new Microcontenido();
-
-        $microcontenidos->tipo = $request->tipo;
-        $microcontenidos->titulo = $request->titulo;
-        $microcontenidos->subtitulo = $request->subtitulo;
-        $microcontenidos->texto = $request->texto;
-        $microcontenidos->autor = $request->autor;
-        $microcontenidos->comienza = $request->comienza;
-        $microcontenidos->caduca = $request->caduca;
-
-
-        $microcontenidos->save();
-
-        return response()->json($microcontenidos, 201);
-    }
-
-
-*/
 
 
 

@@ -196,9 +196,8 @@ Ejemplo 2 -->
   </div>
 
 
-<div class="carruso">
 
-  <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
+ <!--- <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" >
   <ol class="carousel-indicators">
     <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
     <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
@@ -227,7 +226,7 @@ Ejemplo 2 -->
     <span class="sr-only">Next</span>
   </a>
 
-</div>
+</div> -->
 </main>
 
 

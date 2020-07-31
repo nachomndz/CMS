@@ -78,7 +78,9 @@ DB::table('users')->insert([
         //El administrador va a ser a la vez editor (rol=4)
        App\User::find(1)->roles()->attach(4);
 
+       //IgnacioEditor=editor
 
+       App\User::find(3)->roles()->attach(4);
 
          //factoria usuarios con sus respectivos roles
           $MAX_USERS=40;

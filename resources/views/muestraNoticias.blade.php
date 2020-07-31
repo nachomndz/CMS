@@ -74,6 +74,11 @@
     a.hola {
         justify-content: center;
     }
+
+
+    #labelFiltrar{
+        text-align: center;
+    }
 </style>
 
 <body>
@@ -227,12 +232,13 @@
     </script>
     <div class="container">
         <div class="row">
-            <div class="col-1">
-                Filtrar:
-            </div>
-            <div class="custom-control custom-switch col-2">
+            <!--<div class="col-1">
+                
+            </div> -->
+            
+            <div id="labelFiltrar" class="custom-control custom-switch col-2">
                 <input type="checkbox" class="custom-control-input" id="customSwitch1" onclick="mostrarOcultas()">
-                <label class="custom-control-label" for="customSwitch1">Ocultas(ON)/Visibles(OFF)</label>
+                <label id="labelFiltrar" class="custom-control-label center" for="customSwitch1">Ocultas(ON)/Visibles(OFF)</label>
             </div>
 
         </div>
